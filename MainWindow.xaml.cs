@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using RPGCardsGenerator.Variables;
 
 namespace RPGCardsGenerator
 {
@@ -16,14 +18,18 @@ namespace RPGCardsGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
+        PlayerCharacter testOne;
         public MainWindow()
         {
+            
             InitializeComponent();
         }
-
+        int x = 0;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            testOne = new PlayerCharacter("Testowiec");
+            TextBlockTest.Text = testOne.NameOfPalyer;
+            
         }
     }
 }

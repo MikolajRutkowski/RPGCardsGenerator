@@ -14,7 +14,6 @@ namespace RPGCardsGenerator.Variables
 
     internal class Statistics
     {
-        public int Id {  get; set; }
         public string Name { get; private set; }
         public string Description { get; private set; } = string.Empty;
         public int Value { get; private set; }
@@ -26,6 +25,9 @@ namespace RPGCardsGenerator.Variables
             this.Type = type;
         }
         
-
+        public void SetValue(int newValue)
+        {
+            this.Value = newValue;
+        }
     }
 }
