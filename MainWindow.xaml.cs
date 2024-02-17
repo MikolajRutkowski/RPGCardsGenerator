@@ -28,6 +28,7 @@ namespace RPGCardsGenerator
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             testOne = new PlayerCharacter("Testowiec");
+            string costdd = string.Empty;
             TextBlockTest.Text = testOne.NameOfPalyer;
             
         }
