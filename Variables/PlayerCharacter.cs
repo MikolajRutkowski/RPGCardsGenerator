@@ -9,7 +9,7 @@ namespace RPGCardsGenerator.Variables
     internal class PlayerCharacter : Character
     {
         public string NameOfPalyer { get; private set; }
-        public PlayerCharacter (string nameOfPalyer) : base()
+        public PlayerCharacter (string nameOfPalyer,string nameOfCharacter) : base(nameOfCharacter)
         {
             this.NameOfPalyer = nameOfPalyer;
         }
