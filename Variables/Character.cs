@@ -12,11 +12,12 @@ namespace RPGCardsGenerator.Variables
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ListOfStatisci Stats = new ListOfStatisci();
+        public ListOfStatisci Stats;
 
-        public Character(string name) {
+        public Character(int id, string name) {
             this.Name = name;
-            
+            this.Id = id;
+            Stats = new ListOfStatisci(Id);
         }
         
     }

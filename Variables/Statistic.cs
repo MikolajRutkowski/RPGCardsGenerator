@@ -34,29 +34,27 @@ namespace RPGCardsGenerator.Variables
     public class ListOfStatisci
     {
         public int IdOfCharacter { get; set; }
-        public Statistic Strength;
-        public Statistic Dexterity;
-        public Statistic Force;
-        public Statistic Fitness;
-        public Statistic Appearance;
-        public Statistic strength;
-        public Statistic Education;
-        public Statistic Physique;
+        public Statistic Strength; //1
+        public Statistic Dexterity; //2
+        public Statistic Force; //3
+        public Statistic Fitness; //4
+        public Statistic Appearance; //5
+        public Statistic Education;//7
+        public Statistic Physique;//8
         public Statistic Intelligence;
         public Statistic Move;
         public ListOfStatisci(int idOfCharacter)
         {
             this.IdOfCharacter = idOfCharacter;
             Strength = new Statistic("Siła", TypeOfCariables.characteristic);
-        Dexterity = new Statistic("Siła", TypeOfCariables.characteristic);
-       Force = new Statistic("Siła", TypeOfCariables.characteristic);
-         Fitness = new Statistic("Siła", TypeOfCariables.characteristic);
-         Appearance = new Statistic("Siła", TypeOfCariables.characteristic);
-         strength = new Statistic("Siła", TypeOfCariables.characteristic);
-         Education = new Statistic("Siła", TypeOfCariables.characteristic);
-         Physique = new Statistic("Siła", TypeOfCariables.characteristic);
-         Intelligence = new Statistic("Siła", TypeOfCariables.characteristic);
-        Move = new Statistic("Siła", TypeOfCariables.characteristic);
+            Dexterity = new Statistic("Zręczność", TypeOfCariables.characteristic);
+            Force = new Statistic("Moc", TypeOfCariables.characteristic);
+            Fitness = new Statistic("Kondycja", TypeOfCariables.characteristic);
+            Appearance = new Statistic("Wygląd", TypeOfCariables.characteristic);
+            Education = new Statistic("Wykształcenie", TypeOfCariables.characteristic);
+            Physique = new Statistic("Budowa ciała", TypeOfCariables.characteristic);
+            Intelligence = new Statistic("Inteligencja", TypeOfCariables.characteristic);
+            Move = new Statistic("Ruch", TypeOfCariables.characteristic);
     }
 
     }
