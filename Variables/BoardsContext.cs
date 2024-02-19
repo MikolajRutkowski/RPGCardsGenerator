@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace RPGCardsGenerator.Variables
 {
-    internal class NPC : Character
+    internal class BoardsContext : DbContext
+
     {
-        public NPC(int id, string name) : base(id,name)
-        {
-        }
     }
 }

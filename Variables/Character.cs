@@ -12,18 +12,12 @@ namespace RPGCardsGenerator.Variables
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Statistics> Characteristics = new List<Statistics>();
+        public ListOfStatisci Stats;
 
-        public Character() {
-            Characteristics.Add(new Statistics("Siła", TypeOfCariables.characteristic));
-            Characteristics.Add(new Statistics("Zręczność", TypeOfCariables.characteristic));
-            Characteristics.Add(new Statistics("Moc", TypeOfCariables.characteristic));
-            Characteristics.Add(new Statistics("Kondyccja", TypeOfCariables.characteristic));
-            Characteristics.Add(new Statistics("Wygląd", TypeOfCariables.characteristic));
-            Characteristics.Add(new Statistics("Wykształcenie", TypeOfCariables.characteristic));
-            Characteristics.Add(new Statistics("Budowa Ciała", TypeOfCariables.characteristic));
-            Characteristics.Add(new Statistics("Inteligencja", TypeOfCariables.characteristic));
-            Characteristics.Add(new Statistics("Ruch", TypeOfCariables.characteristic));
+        public Character(int id, string name) {
+            this.Name = name;
+            this.Id = id;
+            Stats = new ListOfStatisci(Id);
         }
         
     }
