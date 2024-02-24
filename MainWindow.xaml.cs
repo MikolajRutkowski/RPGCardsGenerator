@@ -10,6 +10,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using RPGCardsGenerator.Variables;
+using System.Windows.Forms;
+
 
 namespace RPGCardsGenerator
 {
@@ -18,18 +20,25 @@ namespace RPGCardsGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        
+
+
         PlayerCharacter testOne;
         public MainWindow()
         {
-            
+           
+
+            Console.WriteLine("sdssdd");
             InitializeComponent();
+            Console.WriteLine("sdssdd");
         }
         int x = 0;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             testOne = new PlayerCharacter(1,"GraczTestowy","CharakterTestowy01");
+
             
-            TextBlockTest.Text = testOne.NameOfPalyer + " " + testOne.Stats.Move.Value;
             
         }
     }
