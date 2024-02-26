@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="TestButton" HorizontalAlignment="Center" Margin="0,164,0,0" VerticalAlignment="Top" Height="102" Width="200" Click="Button_Click"/>
-        <TextBlock x:Name="TextBlockTest" HorizontalAlignment="Left" Margin="126,118,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="52" Width="98"/>
+        <TextBlock x:Name="TextBlockTest" HorizontalAlignment="Left" Margin="126,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="339" Width="155"/>
 
 
     </Grid>

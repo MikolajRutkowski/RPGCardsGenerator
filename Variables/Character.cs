@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
@@ -8,16 +9,16 @@ using System.Windows.Documents;
 
 namespace RPGCardsGenerator.Variables
 {
-    internal abstract class Character
+    public abstract class Character
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ListOfStatisci Stats;
+        public virtual List<Statistic> Stats { get; set; } = new List<Statistic>();
 
-        public Character(int id, string name) {
+        public Character(string name) {
             this.Name = name;
-            this.Id = id;
-            Stats = new ListOfStatisci(Id);
+            
+            
         }
         
     }

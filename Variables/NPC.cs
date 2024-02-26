@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPGCardsGenerator.Variables
 {
-    internal class NPC : Character
+    public class NPC : Character
     {
-        public NPC(int id, string name) : base(id,name)
+        public NPC(string name) : base(name)
         {
         }
     }
