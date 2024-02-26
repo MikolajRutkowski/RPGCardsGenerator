@@ -21,25 +21,42 @@ namespace RPGCardsGenerator
     public partial class MainWindow : Window
     {
 
-        
 
 
-        PlayerCharacter testOne;
+
+       
         public MainWindow()
         {
            
 
-            Console.WriteLine("sdssdd");
+            
             InitializeComponent();
-            Console.WriteLine("sdssdd");
+            
         }
-        int x = 0;
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            testOne = new PlayerCharacter(1,"GraczTestowy","CharakterTestowy01");
+            string returnString = "";
+            using (var dbContext = new BoardsContext() )
+            {
+                int x = 1;
+                
+                dbContext.NPCs.Add(new NPC("Testowy Ziomek nr " + x.ToString()));
+                dbContext.SaveChanges();
 
-            
-            
+                var Npcs = dbContext.NPCs.ToList();
+
+                foreach ( var npc in Npcs )
+                {
+                    returnString = returnString + "Imie:" + npc.Name + "Id: " + npc.Id +"\n";
+                }
+                TextBlockTest.Text = returnString;
+                x++;
+            }
+
+
+
+
         }
     }
 }

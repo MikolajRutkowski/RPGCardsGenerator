@@ -8,7 +8,7 @@ namespace RPGCardsGenerator.Variables
 {
     public class NPC : Character
     {
-        public NPC(int id, string name) : base(id,name)
+        public NPC(string name) : base(name)
         {
         }
     }
