@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RPGCardsGenerator.Variables;
 
@@ -10,9 +11,11 @@ using RPGCardsGenerator.Variables;
 namespace RPGCardsGenerator.Migrations
 {
     [DbContext(typeof(BoardsContext))]
-    partial class BoardsContextModelSnapshot : ModelSnapshot
+    [Migration("20240303200840_02")]
+    partial class _02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

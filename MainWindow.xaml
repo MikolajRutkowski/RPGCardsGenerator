@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="TestButton" HorizontalAlignment="Center" Margin="0,164,0,0" VerticalAlignment="Top" Height="102" Width="200" Click="Button_Click"/>
-        <TextBlock x:Name="TextBlockTest" HorizontalAlignment="Left" Margin="126,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="339" Width="155"/>
+        <Button Content="Add new Character" HorizontalAlignment="Left" Margin="431,285,0,0" VerticalAlignment="Top" Height="102" Width="154" Click="Button_Click"/>
+        <TextBlock x:Name="TestBlokX" HorizontalAlignment="Left" Margin="44,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="339" Width="349"/>
+        <Button Content="Add new Scill" HorizontalAlignment="Left" Margin="628,285,0,0" VerticalAlignment="Top" Height="102" Width="135" Click="Button_Click_1"/>
 
 
     </Grid>
