@@ -20,14 +20,11 @@ namespace RPGCardsGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
+        int x;
 
-
-
-
-       
         public MainWindow()
         {
-           
+            x = 1; 
 
             
             InitializeComponent();
@@ -39,21 +36,44 @@ namespace RPGCardsGenerator
             string returnString = "";
             using (var dbContext = new BoardsContext() )
             {
-                int x = 1;
-                
-                dbContext.NPCs.Add(new NPC("Testowy Ziomek nr " + x.ToString()));
+
+
+                dbContext.PlayerCharacters.Add(new PlayerCharacter("Testowy Gracz nr:" + x.ToString()) );
                 dbContext.SaveChanges();
+                var ListOfPlayers = dbContext.PlayerCharacters.ToList();
 
-                var Npcs = dbContext.NPCs.ToList();
-
-                foreach ( var npc in Npcs )
+                foreach ( PlayerCharacter player in ListOfPlayers)
                 {
-                    returnString = returnString + "Imie:" + npc.Name + "Id: " + npc.Id +"\n";
+                    returnString += "Postać: " + player.Name + " Jego statsy:"  + '\n';
+                    var listofStatsOfMyPlayer = player.Stats.ToList();
+                    foreach(Statistic statistic in listofStatsOfMyPlayer) {
+                        returnString += "Statystyka nr" + statistic.Id + " jej wartośc: " + statistic.Value + '\n'; 
+                    }
+                    returnString += '\n';
                 }
-                TextBlockTest.Text = returnString;
+
+                TestBlokX.Text = returnString;
                 x++;
             }
 
+
+
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            using(var dbContext = new BoardsContext())
+            {
+                dbContext.Statistics.Add(new Statistic()
+                {
+                    CharaterId = 1002,
+                    Value = new Random().Next(50),
+                    Name = "Statytstyka testowa nr:"  + x.ToString()
+
+                });
+                dbContext.SaveChanges();
+            }
 
 
 

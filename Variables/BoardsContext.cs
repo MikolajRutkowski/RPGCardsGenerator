@@ -21,6 +21,19 @@ namespace RPGCardsGenerator.Variables
                 // .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=RPGDataBase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Statistic>(eb =>
+            { eb.Property(x => x.Name).IsRequired(); 
+              eb.Property(x => x.Value).IsRequired().HasMaxLength(2);
+                eb.Property(x => x.Description).HasDefaultValue("Opis");
+            });
+
+            modelBuilder.Entity<PlayerCharacter>(pc =>
+            {
+                pc.HasMany(p => p.Stats).WithOne(s => (PlayerCharacter)s.Character).HasForeignKey(s => s.CharaterId);
+            });
+        }
+
     }
-    
 }
