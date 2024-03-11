@@ -5,12 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPGCardsGenerator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Add new Character" HorizontalAlignment="Left" Margin="431,285,0,0" VerticalAlignment="Top" Height="102" Width="154" Click="Button_Click"/>
-        <TextBlock x:Name="TestBlokX" HorizontalAlignment="Left" Margin="44,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="339" Width="349"/>
-        <Button Content="Add new Scill" HorizontalAlignment="Left" Margin="628,285,0,0" VerticalAlignment="Top" Height="102" Width="135" Click="Button_Click_1"/>
+        Title="MainWindow" Height="600" Width="1000">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="New">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/NewFile.png"  />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Open"/>
+                <MenuItem Header="Save">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/SaveFile.png" Width="Auto"/>
 
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="Info"/>
+            <MenuItem Header="Future"/>
+        </Menu>
+        <TextBlock>dsdssd</TextBlock>
 
-    </Grid>
+    </DockPanel>
+
 </Window>
