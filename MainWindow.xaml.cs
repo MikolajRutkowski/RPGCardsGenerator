@@ -31,6 +31,8 @@ namespace RPGCardsGenerator
             
         }
         
+
+        /*
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string returnString = "";
@@ -78,5 +80,8 @@ namespace RPGCardsGenerator
 
 
         }
+
+        */
+   
     }
 }
