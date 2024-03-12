@@ -52,7 +52,7 @@ namespace RPGCardsGenerator
                     returnString += '\n';
                 }
 
-                TestBlokX.Text = returnString;
+                JEDEN.Text =  returnString;
                 x++;
             }
 

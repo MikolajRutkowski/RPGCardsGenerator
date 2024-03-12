@@ -7,10 +7,60 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Add new Character" HorizontalAlignment="Left" Margin="431,285,0,0" VerticalAlignment="Top" Height="102" Width="154" Click="Button_Click"/>
-        <TextBlock x:Name="TestBlokX" HorizontalAlignment="Left" Margin="44,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="339" Width="349"/>
-        <Button Content="Add new Scill" HorizontalAlignment="Left" Margin="628,285,0,0" VerticalAlignment="Top" Height="102" Width="135" Click="Button_Click_1"/>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File">
+                    <MenuItem Command="New">
+                        <MenuItem.Icon>
+                            <Image Source="/Icons/NewFile.png"  />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Command="Open"/>
+                    <MenuItem Command="Save">
+                        <MenuItem.Icon>
+                            <Image Source="/Icons/SaveFile.png" Width="Auto"/>
 
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Exit" Command="Close"/>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem  Command="Copy"/>
+                    <MenuItem  Command="Cut"/>
+                    <MenuItem  Command="Paste"/>
+                    <MenuItem Header="Increase Size" Command="IncreaseFontSize"/>
+                </MenuItem>
+                <MenuItem Header="Future"/>
+                <MenuItem Header="Refresh" Click="Button_Click" />
+            </Menu>
+            <TextBlock>dsdssd</TextBlock>
+
+        </DockPanel>
+        <Grid Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Przykładowa zawartość siatki -->
+            <Border Background="LightGray" Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="Lista Postaci Graczy"/>
+            </Border>
+            <Border Background="LightGray" Grid.Row="0" Grid.Column="1">
+                <TextBlock Text="Lista NPC"/>
+            </Border>
+            <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
+                <TextBlock Text="dsss" x:Name="JEDEN"/>
+            </Border>
+            <Border Background="LightGray" Grid.Row="1" Grid.Column="1">
+                <RichTextBox></RichTextBox>
+            </Border>
+        </Grid>
 
     </Grid>
 </Window>
