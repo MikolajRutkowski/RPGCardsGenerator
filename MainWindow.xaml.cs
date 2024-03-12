@@ -20,17 +20,23 @@ namespace RPGCardsGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
-        int x;
+       
 
         public MainWindow()
         {
-            x = 1; 
-
-            
+          
             InitializeComponent();
             
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.MessageBox.Show("Refresh app");
+        }
+
         
+
 
         /*
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -82,6 +88,6 @@ namespace RPGCardsGenerator
         }
 
         */
-   
+
     }
 }

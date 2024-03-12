@@ -3,32 +3,63 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RPGCardsGenerator"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1000">
+    <Grid>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New">
+                <MenuItem Command="New">
                     <MenuItem.Icon>
                         <Image Source="/Icons/NewFile.png"  />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Save">
+                <MenuItem Command="Open"/>
+                <MenuItem Command="Save">
                     <MenuItem.Icon>
                         <Image Source="/Icons/SaveFile.png" Width="Auto"/>
 
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="Exit" Command="Close"/>
             </MenuItem>
-            <MenuItem Header="Info"/>
-            <MenuItem Header="Future"/>
-        </Menu>
+                <MenuItem Header="Edit">
+                    <MenuItem  Command="Copy"/>
+                    <MenuItem  Command="Cut"/>
+                    <MenuItem  Command="Paste"/>
+                    <MenuItem Header="Increase Size" Command="IncreaseFontSize"/>
+                </MenuItem>
+                <MenuItem Header="Future"/>
+            <MenuItem Header="Refresh" Click="MenuItem_Click" />
+            </Menu>
         <TextBlock>dsdssd</TextBlock>
 
     </DockPanel>
+        <Grid Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
+            <!-- Przykładowa zawartość siatki -->
+            <Border Background="LightGray" Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="Lista Postaci Graczy"/>
+            </Border>
+            <Border Background="LightGray" Grid.Row="0" Grid.Column="1">
+                <TextBlock Text="Lista NPC"/>
+            </Border>
+            <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
+                <TextBlock Text="dsss" x:Name="JEDEN"/>
+            </Border>
+            <Border Background="LightGray" Grid.Row="1" Grid.Column="1">
+                <RichTextBox></RichTextBox>
+            </Border>
+        </Grid>
+
+    </Grid>
 </Window>
