@@ -24,7 +24,8 @@ namespace RPGCardsGenerator.Variables
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Statistic>(eb =>
-            { eb.Property(x => x.Name).IsRequired(); 
+            { 
+                eb.Property(x => x.Name).IsRequired(); 
               eb.Property(x => x.Value).IsRequired().HasMaxLength(2);
                 eb.Property(x => x.Description).HasDefaultValue("Opis");
             });
@@ -32,6 +33,11 @@ namespace RPGCardsGenerator.Variables
             modelBuilder.Entity<PlayerCharacter>(pc =>
             {
                 pc.HasMany(p => p.Stats).WithOne(s => (PlayerCharacter)s.Character).HasForeignKey(s => s.CharaterId);
+            });
+
+            modelBuilder.Entity<NPC>(pc =>
+            {
+                
             });
         }
 

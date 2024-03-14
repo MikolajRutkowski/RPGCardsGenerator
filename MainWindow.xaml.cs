@@ -32,7 +32,7 @@ namespace RPGCardsGenerator
         }
         
 
-        /*
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string returnString = "";
@@ -63,6 +63,33 @@ namespace RPGCardsGenerator
 
         }
 
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            string returnString = "";
+            using (var dbContext = new BoardsContext())
+            {
+                var listastatystyk = new List<Statistic>();
+                var postac  = dbContext.PlayerCharacters.ToList();
+                for ( int i = 0; i < postac.Count; i++)
+                {
+                    if(postac[i].Id == 1002)
+                    {
+                        listastatystyk  =  postac[i].Stats.ToList();
+                    }
+                }
+                foreach(Statistic s in listastatystyk)
+                {
+                    returnString += "Statystyka nr" + s.Id + " jej wartośc: " + s.Value + '\n';
+                }
+                JEDEN.Text = returnString;
+                x++;
+            }
+
+
+
+
+        }
+        /*
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             using(var dbContext = new BoardsContext())
@@ -82,6 +109,6 @@ namespace RPGCardsGenerator
         }
 
         */
-   
+
     }
 }
