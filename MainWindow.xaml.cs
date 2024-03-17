@@ -68,23 +68,38 @@ namespace RPGCardsGenerator
             string returnString = "";
             using (var dbContext = new BoardsContext())
             {
-                var listastatystyk = new List<Statistic>();
-                var postac  = dbContext.PlayerCharacters.ToList();
+                dbContext.Add(new PlayerCharacter("Ziomek"));
+                dbContext.SaveChanges();
+                var postac  = dbContext.NPCs.ToList();
                 for ( int i = 0; i < postac.Count; i++)
                 {
-                    if(postac[i].Id == 1002)
-                    {
-                        listastatystyk  =  postac[i].Stats.ToList();
-                    }
+                    returnString = postac[i].Name;
                 }
-                foreach(Statistic s in listastatystyk)
-                {
-                    returnString += "Statystyka nr" + s.Id + " jej wartośc: " + s.Value + '\n';
-                }
-                JEDEN.Text = returnString;
-                x++;
+                
+                
+               
             }
 
+            JEDEN.Text += returnString;
+
+
+        }
+
+        private void Button_Click3(object sender, RoutedEventArgs e)
+        {
+            //dodac nowa statystyke
+            using(var dbContext = new BoardsContext())
+            {
+                var listCharacter = dbContext.PlayerCharacters.ToList();
+                dbContext.Statistics.Add(new Statistic()
+                {
+                    CharaterId = listCharacter[0].Id,
+                    Value = new Random().Next(50),
+                    Name = "Statytstyka testowa nr:" + x.ToString()
+
+                }) ;
+                dbContext.SaveChanges();
+            }
 
 
 

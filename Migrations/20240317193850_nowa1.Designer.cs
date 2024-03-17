@@ -11,8 +11,8 @@ using RPGCardsGenerator.Variables;
 namespace RPGCardsGenerator.Migrations
 {
     [DbContext(typeof(BoardsContext))]
-    [Migration("20240226200650_one")]
-    partial class one
+    [Migration("20240317193850_nowa1")]
+    partial class nowa1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace RPGCardsGenerator.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Character");
+                    b.ToTable("Characters");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Character");
 
@@ -58,26 +58,26 @@ namespace RPGCardsGenerator.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CharaterId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Opis");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Value")
+                        .HasMaxLength(2)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId");
+                    b.HasIndex("CharaterId");
 
                     b.ToTable("Statistics");
                 });
@@ -85,6 +85,10 @@ namespace RPGCardsGenerator.Migrations
             modelBuilder.Entity("RPGCardsGenerator.Variables.NPC", b =>
                 {
                     b.HasBaseType("RPGCardsGenerator.Variables.Character");
+
+                    b.Property<string>("reputacja")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("NPC");
                 });
@@ -104,7 +108,7 @@ namespace RPGCardsGenerator.Migrations
                 {
                     b.HasOne("RPGCardsGenerator.Variables.Character", "Character")
                         .WithMany("Stats")
-                        .HasForeignKey("CharacterId")
+                        .HasForeignKey("CharaterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

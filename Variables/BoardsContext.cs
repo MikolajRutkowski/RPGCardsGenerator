@@ -9,10 +9,12 @@ namespace RPGCardsGenerator.Variables
 {
     public class BoardsContext : DbContext
     {
+        public DbSet<Character> Characters { get; set; }
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
-        public DbSet<Statistic> Statistics { get; set; }
 
         public DbSet<NPC> NPCs { get; set; }
+
+        public DbSet<Statistic> Statistics { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,19 +27,21 @@ namespace RPGCardsGenerator.Variables
         {
             modelBuilder.Entity<Statistic>(eb =>
             { 
-                eb.Property(x => x.Name).IsRequired(); 
-              eb.Property(x => x.Value).IsRequired().HasMaxLength(2);
+                eb.Property(x => x.Name).IsRequired();
+                eb.Property(x => x.Value).IsRequired().HasDefaultValue(1);
                 eb.Property(x => x.Description).HasDefaultValue("Opis");
+                eb.HasOne(x => x.Character).WithMany(c => c.Stats).HasForeignKey(c => c.CharaterId);
             });
 
             modelBuilder.Entity<PlayerCharacter>(pc =>
             {
-                pc.HasMany(p => p.Stats).WithOne(s => (PlayerCharacter)s.Character).HasForeignKey(s => s.CharaterId);
+                pc.Property(x => x.Expiries).HasDefaultValue(0);
+              
             });
 
-            modelBuilder.Entity<NPC>(pc =>
+            modelBuilder.Entity<NPC>(nop =>
             {
-                
+                nop.Property(x => x.reputacja).HasDefaultValue("Neutralny");
             });
         }
 

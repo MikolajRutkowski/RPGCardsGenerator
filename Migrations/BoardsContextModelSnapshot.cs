@@ -40,7 +40,7 @@ namespace RPGCardsGenerator.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Character");
+                    b.ToTable("Characters");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Character");
 
@@ -69,8 +69,9 @@ namespace RPGCardsGenerator.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Value")
-                        .HasMaxLength(2)
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.HasKey("Id");
 
@@ -83,12 +84,23 @@ namespace RPGCardsGenerator.Migrations
                 {
                     b.HasBaseType("RPGCardsGenerator.Variables.Character");
 
+                    b.Property<string>("reputacja")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Neutralny");
+
                     b.HasDiscriminator().HasValue("NPC");
                 });
 
             modelBuilder.Entity("RPGCardsGenerator.Variables.PlayerCharacter", b =>
                 {
                     b.HasBaseType("RPGCardsGenerator.Variables.Character");
+
+                    b.Property<int>("Expiries")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("NameOfPlayer")
                         .IsRequired()
