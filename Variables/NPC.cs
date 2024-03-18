@@ -8,7 +8,7 @@ namespace RPGCardsGenerator.Variables
 {
     public class NPC : Character
     {
-        public string reputacja { get; set; } = "";
+        public string reputacja { get; set; } 
         public NPC(string name) : base(name)
         {
         }

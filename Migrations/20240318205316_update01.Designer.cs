@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RPGCardsGenerator.Variables;
 
@@ -10,9 +11,11 @@ using RPGCardsGenerator.Variables;
 namespace RPGCardsGenerator.Migrations
 {
     [DbContext(typeof(BoardsContext))]
-    partial class BoardsContextModelSnapshot : ModelSnapshot
+    [Migration("20240318205316_update01")]
+    partial class update01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,7 +89,9 @@ namespace RPGCardsGenerator.Migrations
 
                     b.Property<string>("reputacja")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Neutralny");
 
                     b.HasDiscriminator().HasValue("NPC");
                 });

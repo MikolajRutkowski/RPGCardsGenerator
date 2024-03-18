@@ -33,15 +33,19 @@ namespace RPGCardsGenerator.Variables
                 eb.HasOne(x => x.Character).WithMany(c => c.Stats).HasForeignKey(c => c.CharaterId);
             });
 
+
+            modelBuilder.Entity<Character>(eb => {
+                eb.Property(x => x.Name).IsRequired();
+            }) ;
             modelBuilder.Entity<PlayerCharacter>(pc =>
             {
-                pc.Property(x => x.Expiries).HasDefaultValue(0);
+               // pc.Property(x => x.Expiries).HasDefaultValue(0);
               
             });
 
             modelBuilder.Entity<NPC>(nop =>
             {
-                nop.Property(x => x.reputacja).HasDefaultValue("Neutralny");
+              //  nop.Property(x => x.reputacja).HasDefaultValue("Neutralny");
             });
         }
 

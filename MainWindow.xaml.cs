@@ -68,9 +68,9 @@ namespace RPGCardsGenerator
             string returnString = "";
             using (var dbContext = new BoardsContext())
             {
-                dbContext.Add(new PlayerCharacter("Ziomek"));
+                
                 dbContext.SaveChanges();
-                var postac  = dbContext.NPCs.ToList();
+                var postac  = dbContext.PlayerCharacters.ToList();
                 for ( int i = 0; i < postac.Count; i++)
                 {
                     returnString = postac[i].Name;
@@ -85,9 +85,14 @@ namespace RPGCardsGenerator
 
         }
 
+       
+
+
+
+
         private void Button_Click3(object sender, RoutedEventArgs e)
         {
-            //dodac nowa statystyke
+            //dodac nowa statystyke testowa
             using(var dbContext = new BoardsContext())
             {
                 var listCharacter = dbContext.PlayerCharacters.ToList();
