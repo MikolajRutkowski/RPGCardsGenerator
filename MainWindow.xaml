@@ -38,6 +38,7 @@
             <TextBlock>dsdssd</TextBlock>
 
         </DockPanel>
+        
         <Grid Margin="0,20,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
@@ -48,10 +49,21 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <!-- Przykładowa zawartość siatki -->
+
             <Border Background="LightGray" Grid.Row="0" Grid.Column="0">
-                <TextBlock Text="Lista Postaci Graczy"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Lista Postaci Graczy" Grid.Column="0"/>
+                    <Button Grid.Column="1" Click="NPCToCharacterAndBack" Name="NpcOrCharacterButton" >
+                        <TextBlock Name="NpcOrCharacterTextBlockTop" Text="NPC"></TextBlock>
+                    </Button>
+                </Grid>
+                
             </Border>
+            
             <Border Background="LightGray" Grid.Row="0" Grid.Column="1">
                 <TextBlock Text="Lista NPC"/>
             </Border>
@@ -62,5 +74,6 @@
                 <RichTextBox></RichTextBox>
             </Border>
         </Grid>
+        
     </Grid>
 </Window>

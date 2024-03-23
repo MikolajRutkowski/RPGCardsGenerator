@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using RPGCardsGenerator.Variables;
 using System.Windows.Forms;
+using System.ComponentModel.Design.Serialization;
 
 
 namespace RPGCardsGenerator
@@ -21,16 +22,22 @@ namespace RPGCardsGenerator
     public partial class MainWindow : Window
     {
         int x;
+        static bool PlayerCharacterOrNPC = false;
+        public delegate void Reload();
+        public event EventHandler PlayerCharacterChanged;
 
         public MainWindow()
         {
-            x = 1; 
+            x = 1;
 
             
             InitializeComponent();
             
         }
-        
+        public void PrintAll()
+        {
+
+        }
 
         
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -109,26 +116,41 @@ namespace RPGCardsGenerator
 
 
         }
-        /*
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            using(var dbContext = new BoardsContext())
-            {
-                dbContext.Statistics.Add(new Statistic()
-                {
-                    CharaterId = 1002,
-                    Value = new Random().Next(50),
-                    Name = "Statytstyka testowa nr:"  + x.ToString()
 
-                });
-                dbContext.SaveChanges();
+        private void NPCToCharacterAndBack(object sender, RoutedEventArgs e)
+        {
+            PlayerCharacterOrNPC = !PlayerCharacterOrNPC;
+            if (PlayerCharacterOrNPC)
+            {
+                NpcOrCharacterTextBlockTop.Text = "NPC";
+            }
+            else
+            {
+                NpcOrCharacterTextBlockTop.Text = "PlayeCharacter";
             }
 
 
-
         }
+        /*
+private void Button_Click_1(object sender, RoutedEventArgs e)
+{
+   using(var dbContext = new BoardsContext())
+   {
+       dbContext.Statistics.Add(new Statistic()
+       {
+           CharaterId = 1002,
+           Value = new Random().Next(50),
+           Name = "Statytstyka testowa nr:"  + x.ToString()
 
-        */
+       });
+       dbContext.SaveChanges();
+   }
+
+
+
+}
+
+*/
 
     }
 }
