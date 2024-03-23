@@ -30,7 +30,7 @@ namespace RPGCardsGenerator
         {
             x = 1;
 
-            this.InitializeComponent(this);
+            
             InitializeComponent();
             
         }
@@ -126,7 +126,7 @@ namespace RPGCardsGenerator
             }
             else
             {
-                NpcOrCharacterTextBlock.Text = "PlayeCharacter";
+                NpcOrCharacterTextBlockTop.Text = "PlayeCharacter";
             }
 
 
