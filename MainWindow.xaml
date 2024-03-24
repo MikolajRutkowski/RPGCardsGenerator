@@ -33,7 +33,7 @@
                     <MenuItem Header="Increase Size" Command="IncreaseFontSize"/>
                 </MenuItem>
                 <MenuItem Header="Future"/>
-                <MenuItem Header="Refresh" Click="Button_Click2" />
+                <MenuItem Header="Refresh" Click="Button_Click3" />
             </Menu>
             <TextBlock>dsdssd</TextBlock>
 
@@ -68,7 +68,7 @@
                 <TextBlock Text="Lista NPC"/>
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
-                <TextBlock Text="dsss" x:Name="JEDEN"/>
+                <TextBlock Text="dsss" x:Name="NpcOrCharacterTextBlockMain"/>
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="1">
                 <RichTextBox></RichTextBox>

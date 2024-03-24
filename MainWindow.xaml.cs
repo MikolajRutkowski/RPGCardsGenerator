@@ -12,6 +12,7 @@ using System.Diagnostics;
 using RPGCardsGenerator.Variables;
 using System.Windows.Forms;
 using System.ComponentModel.Design.Serialization;
+using System.Collections.Generic;
 
 
 namespace RPGCardsGenerator
@@ -29,17 +30,80 @@ namespace RPGCardsGenerator
         public MainWindow()
         {
             x = 1;
-
             
+
             InitializeComponent();
-            
+            PrintAll(true);
         }
-        public void PrintAll()
+        public void PrintAll(bool WithStats = false)
         {
+            NpcOrCharacterTextBlockMain.Text = "";
+            using (var dbContext = new BoardsContext())
+            {
+                var list2 = dbContext.Statistics.ToList();
 
+                if (PlayerCharacterOrNPC)
+                {
+                   var list = dbContext.NPCs.ToList();
+                    if (list.Count > 0)
+                    {
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            NpcOrCharacterTextBlockMain.Text += (list[i].Id + " Imie: " + list[i].Name + '\n');
+                            
+                            if (WithStats)
+                            {
+                                for(int j =  0; j < list2.Count; j++)
+                                {
+                                    if (list[i].Id == list2[j].CharaterId)
+                                    {
+                                        NpcOrCharacterTextBlockMain.Text += (list2[j].Id + " Nazwa: " + list2[j].Name + " " + list2[j].Value);
+                                    }
+                                }
+                                NpcOrCharacterTextBlockMain.Text += '\n';
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        NpcOrCharacterTextBlockMain.Text = "Brak postaci NPC";
+                    }
+                }
+                else
+                {
+                  var list = dbContext.PlayerCharacters.ToList();
+                    if (list.Count > 0)
+                    {
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            NpcOrCharacterTextBlockMain.Text += ( list[i].Id.ToString() + " Imie: " + list[i].Name.ToString() + '\n');
+                            if (WithStats)
+                            {
+                                for (int j = 0; j < list2.Count; j++)
+                                {
+                                    if (list[i].Id == list2[j].CharaterId)
+                                    {
+                                        NpcOrCharacterTextBlockMain.Text += (list2[j].Id + " Nazwa: " + list2[j].Name + " " + list2[j].Value);
+                                    }
+                                }
+                                NpcOrCharacterTextBlockMain.Text += '\n';
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NpcOrCharacterTextBlockMain.Text = "Brak postaci Graczy";
+                    }
+                }
+                
+                    
+
+                
+            }
         }
 
-        
+        #region Buttons
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string returnString = "";
@@ -61,7 +125,7 @@ namespace RPGCardsGenerator
                     returnString += '\n';
                 }
 
-                JEDEN.Text =  returnString;
+               // JEDEN.Text =  returnString;
                 x++;
             }
 
@@ -87,7 +151,7 @@ namespace RPGCardsGenerator
                
             }
 
-            JEDEN.Text += returnString;
+            //JEDEN.Text += returnString;
 
 
         }
@@ -128,11 +192,11 @@ namespace RPGCardsGenerator
             {
                 NpcOrCharacterTextBlockTop.Text = "PlayeCharacter";
             }
-
+            PrintAll();
 
         }
         /*
-private void Button_Click_1(object sender, RoutedEventArgs e)
+            private void Button_Click_1(object sender, RoutedEventArgs e)
 {
    using(var dbContext = new BoardsContext())
    {
@@ -151,6 +215,6 @@ private void Button_Click_1(object sender, RoutedEventArgs e)
 }
 
 */
-
+        #endregion
     }
 }
