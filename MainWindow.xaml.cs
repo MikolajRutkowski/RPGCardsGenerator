@@ -35,9 +35,9 @@ namespace RPGCardsGenerator
 
             
             InitializeComponent();
-            //PrintAll(true);
+            PrintAll(true);
         }
-        public void PrintAll(bool WithStats = false)
+        public void PrintAll(bool WithStats = true)
         {
             NpcOrCharacterTextBlockMain.Text = "";
             using (var dbContext = new BoardsContext())
@@ -162,7 +162,7 @@ namespace RPGCardsGenerator
 
 
 
-        /*
+        
         private void Button_Click3(object sender, RoutedEventArgs e)
         {
             //dodac nowa statystyke testowa
@@ -173,8 +173,8 @@ namespace RPGCardsGenerator
                 {
                     CharaterId = listCharacter[0].Id,
                     Value = new Random().Next(50),
-                    Name = "Siła",
-                    Type = TypeOfCariables.characteristic
+                    Name = "Archelogia",
+                    Type = TypeOfCariables.skill
 
                 }) ;
                 dbContext.SaveChanges();
@@ -183,7 +183,7 @@ namespace RPGCardsGenerator
 
 
         }
-        */
+        
         private void NPCToCharacterAndBack(object sender, RoutedEventArgs e)
         {
             PlayerCharacterOrNPC = !PlayerCharacterOrNPC;
