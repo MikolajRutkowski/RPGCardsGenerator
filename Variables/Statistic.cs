@@ -19,7 +19,7 @@ namespace RPGCardsGenerator.Variables
         public string Name { get;  set; }
         public string Description { get;  set; } = string.Empty;
         public int Value { get;  set; }
-        TypeOfCariables Type { get;  set; }
+        public TypeOfCariables Type { get;  set; }
         public Statistic() {
 
             
