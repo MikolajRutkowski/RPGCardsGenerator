@@ -13,10 +13,12 @@ using RPGCardsGenerator.Variables;
 using System.Windows.Forms;
 using System.ComponentModel.Design.Serialization;
 using System.Collections.Generic;
+using System;
 
 
 namespace RPGCardsGenerator
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -30,10 +32,10 @@ namespace RPGCardsGenerator
         public MainWindow()
         {
             x = 1;
-            
 
+            
             InitializeComponent();
-            PrintAll(true);
+            //PrintAll(true);
         }
         public void PrintAll(bool WithStats = false)
         {
@@ -160,7 +162,7 @@ namespace RPGCardsGenerator
 
 
 
-
+        /*
         private void Button_Click3(object sender, RoutedEventArgs e)
         {
             //dodac nowa statystyke testowa
@@ -171,7 +173,8 @@ namespace RPGCardsGenerator
                 {
                     CharaterId = listCharacter[0].Id,
                     Value = new Random().Next(50),
-                    Name = "Statytstyka testowa nr:" + x.ToString()
+                    Name = "Siła",
+                    Type = TypeOfCariables.characteristic
 
                 }) ;
                 dbContext.SaveChanges();
@@ -180,7 +183,7 @@ namespace RPGCardsGenerator
 
 
         }
-
+        */
         private void NPCToCharacterAndBack(object sender, RoutedEventArgs e)
         {
             PlayerCharacterOrNPC = !PlayerCharacterOrNPC;
@@ -195,6 +198,7 @@ namespace RPGCardsGenerator
             PrintAll();
 
         }
+
         /*
             private void Button_Click_1(object sender, RoutedEventArgs e)
 {
