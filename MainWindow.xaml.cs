@@ -14,6 +14,8 @@ using System.Windows.Forms;
 using System.ComponentModel.Design.Serialization;
 using System.Collections.Generic;
 using System;
+using System.Windows.Media.TextFormatting;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace RPGCardsGenerator
@@ -199,26 +201,29 @@ namespace RPGCardsGenerator
 
         }
 
-        /*
+        
             private void Button_Click_1(object sender, RoutedEventArgs e)
-{
-   using(var dbContext = new BoardsContext())
-   {
-       dbContext.Statistics.Add(new Statistic()
-       {
-           CharaterId = 1002,
-           Value = new Random().Next(50),
-           Name = "Statytstyka testowa nr:"  + x.ToString()
+            {
 
-       });
-       dbContext.SaveChanges();
-   }
+            using (var dbContext = new BoardsContext())
+            {
+                var user = dbContext.Characters.Include(u => u.Stats).FirstOrDefault(c => c.Id == 1005);
+                if (user == null)
+                {
+                    
+                }
+                // sposób 1 gorszy bo 2 zapytania SQL
+                // var ListOfcharacterStats = dbContext.Statistics.Where(x => x.CharaterId == user.Id).ToList();
+                //2 lepszy
+                var ListOfcharacterStats = user.Stats;
+
+                System.Windows.MessageBox.Show(ListOfcharacterStats[5].Name);
+
+            }
+
+        }
 
 
-
-}
-
-*/
         #endregion
     }
 }
