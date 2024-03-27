@@ -33,7 +33,7 @@
                     <MenuItem Header="Increase Size" Command="IncreaseFontSize"/>
                 </MenuItem>
                 <MenuItem Header="Future"/>
-                <MenuItem Header="Refresh" Click="Button_Click3" />
+                <MenuItem Header="Refresh" Click="Button_Click_1" />
             </Menu>
             <TextBlock>dsdssd</TextBlock>
 
