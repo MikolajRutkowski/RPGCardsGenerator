@@ -202,11 +202,12 @@ namespace RPGCardsGenerator
         }
 
         
-            private void Button_Click_1(object sender, RoutedEventArgs e)
-            {
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
 
             using (var dbContext = new BoardsContext())
             {
+                //2 lepszy
                 var user = dbContext.Characters.Include(u => u.Stats).FirstOrDefault(c => c.Id == 1005);
                 if (user == null)
                 {
@@ -220,6 +221,13 @@ namespace RPGCardsGenerator
                 System.Windows.MessageBox.Show(ListOfcharacterStats[5].Name);
 
             }
+
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+
+            BaseOperasions.MakeBase(2003, BaseOperasions.BaseCharacteristicName);
 
         }
 
