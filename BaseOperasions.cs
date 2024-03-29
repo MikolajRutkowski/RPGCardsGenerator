@@ -1,4 +1,5 @@
-﻿using RPGCardsGenerator.Variables;
+﻿using Microsoft.EntityFrameworkCore;
+using RPGCardsGenerator.Variables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,17 @@ namespace RPGCardsGenerator
 {
     public static class BaseOperasions
     {
-        public readonly static List<String> BaseCharacteristic = new List<String>
+        public readonly static List<String> BaseCharacteristicName = new List<String>
         {
-           "Siła",
-           "Budowa Ciała",
-           "Kondycja ",
-           "Moc ",
-           "Zręczność ",
-           "Wygląd ",
-           "Inteligencja ",
-           "Wykształcenie ",
-           "Ruch"
+           "Siła", // 3k6     
+           "Kondycja ", // 3k6
+           "Moc ", // 3k6
+           "Zręczność ", // 3k6
+           "Wygląd ", // 3k6
+           "Inteligencja ", //2k6 + 6
+           "Wykształcenie ", //2k6 + 6
+           "Budowa Ciała",  //2k6 + 6
+           "Ruch" // tu wyższa szkoła jazdy 
         };
 
         public readonly static List<String> BaseSkils = new List<String>
@@ -68,20 +69,43 @@ namespace RPGCardsGenerator
             "Świat naturalny"
         };
 
+        public static List<string> MakeLitOfstring(List<Statistic> baseList)
+        {
+            List<string> result = new List<string>();
+            for (int i = 0; i <  baseList.Count; i++)
+            {
+                result.Add(baseList[i].Name);
+            }
 
+            return result;
+        }
 
-        public static bool MakeBase(int CharacterId, List<String> BaseList)
+        public static bool MakeBase(int SuspectId, List<String> BaseList)
         {
             using (var dbContext = new BoardsContext())
             {
-                var user = dbContext.Characters.FirstOrDefault(c => c.Id == CharacterId);
+                var user = dbContext.Characters.Include(u => u.Stats).FirstOrDefault(c => c.Id == SuspectId);
                 if (user == null)
                 {
                     return false;
                 }
-                var ListOfcharacterStats = user.Stats.ToList();
+                var ListOfcharacterStats = MakeLitOfstring(user.Stats.ToList());
                 
+                for(int i = 0; i < BaseList.Count; i++)
+                {
+                    if (!ListOfcharacterStats.Contains(BaseList[i]))
+                    {
+                        dbContext.Add(new Statistic()
+                        {
+                            Name = BaseList[i],
+                            Value = 0,
+                            CharaterId = SuspectId
 
+
+                        }) ;
+                    }
+                }
+                dbContext.SaveChanges();
 
             }
 
