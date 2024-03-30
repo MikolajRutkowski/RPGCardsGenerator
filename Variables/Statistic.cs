@@ -24,8 +24,19 @@ namespace RPGCardsGenerator.Variables
 
             
         }
-        
-        
+        public Statistic(string name, TypeOfCariables type, string description = "", params int[] values)
+        {
+            this.Name = name;
+            this.Description = description;
+            this.Type = type;
+            this.Value = 0;
+            for (int i = 0; i < values.Length; i++)
+            {
+                this.Value += values[i];
+            }
+
+        }
+
         public Character Character { get; set; }
         public int CharaterId { get; set; }
 
