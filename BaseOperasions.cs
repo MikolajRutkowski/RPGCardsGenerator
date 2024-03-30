@@ -10,6 +10,12 @@ namespace RPGCardsGenerator
 {
     public static class BaseOperasions
     {
+        public static int rollDice(int k = 6)
+        {
+            int results = new Random().Next(1,k+1);
+            return results;
+        }
+
         public readonly static List<String> BaseCharacteristicName = new List<String>
         {
            "Siła", // 3k6     
@@ -20,7 +26,21 @@ namespace RPGCardsGenerator
            "Inteligencja ", //2k6 + 6
            "Wykształcenie ", //2k6 + 6
            "Budowa Ciała",  //2k6 + 6
-           "Ruch" // tu wyższa szkoła jazdy 
+           "Ruch" 
+        };
+
+        public static List<Statistic> BaseCharacteristic = new List<Statistic>
+        {
+           new Statistic("Siła",TypeOfCariables.characteristic,"",rollDice(),rollDice(),rollDice()),
+           new Statistic("Kondycja", TypeOfCariables.characteristic, "",rollDice(),rollDice(),rollDice()),
+           new Statistic("Moc", TypeOfCariables.characteristic, "",rollDice(),rollDice(),rollDice()),
+           new Statistic("Zręczność", TypeOfCariables.characteristic, "", rollDice(),rollDice(),rollDice()),
+           new Statistic("Wygląd", TypeOfCariables.characteristic, "", rollDice(),rollDice(),rollDice()),
+           new Statistic("Inteligencja", TypeOfCariables.characteristic, "", 6,rollDice(),rollDice()),
+           new Statistic("Wykształcenie", TypeOfCariables.characteristic, "", 6,rollDice(),rollDice()),
+           new Statistic("Budowa Ciała", TypeOfCariables.characteristic, "", 6,rollDice(),rollDice()),
+           new Statistic("Ruch", TypeOfCariables.characteristic, "", 7)
+
         };
 
         public readonly static List<String> BaseSkils = new List<String>
@@ -80,7 +100,7 @@ namespace RPGCardsGenerator
             return result;
         }
 
-        public static bool MakeBase(int SuspectId, List<String> BaseList)
+        public static bool MakeBase(int SuspectId, List<Statistic> BaseList)
         {
             using (var dbContext = new BoardsContext())
             {
@@ -93,13 +113,15 @@ namespace RPGCardsGenerator
                 
                 for(int i = 0; i < BaseList.Count; i++)
                 {
-                    if (!ListOfcharacterStats.Contains(BaseList[i]))
+                    if (!ListOfcharacterStats.Contains(BaseList[i].Name))
                     {
                         dbContext.Add(new Statistic()
                         {
-                            Name = BaseList[i],
-                            Value = 0,
-                            CharaterId = SuspectId
+                            Name = BaseList[i].Name,
+                            Value = BaseList[i].Value,
+                            CharaterId = SuspectId,
+                            Description = BaseList[i].Description,
+                            Type = BaseList[i].Type
 
 
                         }) ;
