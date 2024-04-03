@@ -42,8 +42,55 @@ namespace RPGCardsGenerator
            new Statistic("Ruch", TypeOfCariables.characteristic, "", 7)
 
         };
+       
+        public static List<Statistic> BaseSkils = new List<Statistic> 
+        {
+            new Statistic("Antropologia", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Archeologia", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Broń palna", TypeOfCariables.skill, "(Pistolet, Karabin, Strzelba)", rollDice(20), 1),
+            new Statistic("Historia", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Jazda (samochodem)", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Jazda konno", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Język (Inny)", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Korzystanie z biblioteki", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Medycyna", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Mitologia Cthulhu", TypeOfCariables.skill, "", 0),
+            new Statistic("Naprawa elektryczna", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Naprawa mechaniczna", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Nauka", TypeOfCariables.skill, "(różne kategorie)", rollDice(20), 1),
+            new Statistic("Nawigacja", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Obsługa ciężkiego sprzętu", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Ocenianie/Wycena", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Ocena wiarygodności kredytowej", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Okultyzm", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Pierwsza pomoc", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Przekonywanie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Przebranie/Maskowanie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Przetrwanie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Psychoanaliza", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Psychologia", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Prawo", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Pływanie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Rachunkowość", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Rzut", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Skok", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Skradanie się", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Słuchanie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Szybkie rozmawianie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Sztuka/Rzemiosło", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Urok/Oczarowanie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Unik", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Widzenie ukrytych rzeczy", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Wspinaczka", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Zastraszenie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Zręczność manualna", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Śledzenie", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Ślusarstwo", TypeOfCariables.skill, "", rollDice(20), 1),
+            new Statistic("Świat naturalny", TypeOfCariables.skill, "", rollDice(20), 1)
+        };
+    
 
-        public readonly static List<String> BaseSkils = new List<String>
+        public readonly static List<String> BaseSkilsName = new List<String>
         {
            "Antropologia",
             "Archeologia",
@@ -133,5 +180,7 @@ namespace RPGCardsGenerator
 
             return true;
         }
+
+        
     }
 }

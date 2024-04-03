@@ -7,7 +7,7 @@
         mc:Ignorable="d"
 
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="MainGrid">
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
@@ -65,7 +65,7 @@
             </Border>
             
             <Border Background="LightGray" Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="Lista NPC"/>
+                <TextBlock Text="Lista Umiejętności"/>
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
                 <TextBlock Text="dsss" x:Name="NpcOrCharacterTextBlockMain"/>
