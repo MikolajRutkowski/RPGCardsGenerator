@@ -56,7 +56,7 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Lista Postaci Graczy" Grid.Column="0"/>
+                    <TextBlock Text="Lista Postaci " Grid.Column="0"/>
                     <Button Grid.Column="1" Click="NPCToCharacterAndBack" Name="NpcOrCharacterButton" >
                         <TextBlock Name="NpcOrCharacterTextBlockTop" Text="NPC"></TextBlock>
                     </Button>
@@ -65,13 +65,14 @@
             </Border>
             
             <Border Background="LightGray" Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="Lista Umiejętności"/>
+                <TextBlock Text="Karta Postaci"/>
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
-                <TextBlock Text="dsss" x:Name="NpcOrCharacterTextBlockMain"/>
+                <ListBox></ListBox>
+                
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="1">
-                <RichTextBox></RichTextBox>
+                <ListBox />
             </Border>
         </Grid>
         

@@ -42,6 +42,7 @@ namespace RPGCardsGenerator
         }
         public void PrintAll(bool WithStats = true)
         {
+            /*
             NpcOrCharacterTextBlockMain.Text = "";
             using (var dbContext = new BoardsContext())
             {
@@ -55,17 +56,6 @@ namespace RPGCardsGenerator
                         for (int i = 0; i < list.Count; i++)
                         {
                             NpcOrCharacterTextBlockMain.Text += (list[i].Id + " Imie: " + list[i].Name + '\n');
-                            System.Windows.Controls.Button button = new System.Windows.Controls.Button
-                            {
-                                Content = "Button " + (i + 1),
-                                Name = "Button_" + (i + 1)
-                            };
-
-                            // Ustawienie zdarzenia kliknięcia przycisku
-                            button.Click += Button_Click;
-
-                            // Dodanie przycisku do siatki
-                            MainGrid.Children.Add(button);
 
 
                             if (WithStats)
@@ -118,7 +108,10 @@ namespace RPGCardsGenerator
 
                 
             }
+            */
         }
+
+
 
         #region Buttons
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -210,7 +203,7 @@ namespace RPGCardsGenerator
             {
                 NpcOrCharacterTextBlockTop.Text = "PlayeCharacter";
             }
-            PrintAll(false);
+          //  PrintAll(false);
 
         }
 
@@ -240,8 +233,8 @@ namespace RPGCardsGenerator
         private void Button_Click_10(object sender, RoutedEventArgs e)
         {
 
-            BaseOperasions.MakeBase(2005, BaseOperasions.BaseCharacteristic);
-            BaseOperasions.MakeBase(2006, BaseOperasions.BaseSkils);
+            AddSkils.MakeBase(2005, AddSkils.BaseCharacteristic);
+            AddSkils.MakeBase(2006, AddSkils.BaseSkils);
 
 
         }
