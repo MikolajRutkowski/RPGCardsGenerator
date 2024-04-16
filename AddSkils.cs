@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RPGCardsGenerator
 {
-    public static class BaseOperasions
+    public static class AddSkils
     {
         public static int rollDice(int k = 6)
         {
