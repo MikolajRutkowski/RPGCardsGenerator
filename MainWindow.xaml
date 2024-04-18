@@ -68,11 +68,11 @@
                 <TextBlock Text="Karta Postaci"/>
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
-                <ListBox></ListBox>
+                <ListBox Name="MainListBox" SelectionMode="Single" SelectionChanged="MainListBox_SelectionChanged"></ListBox>
                 
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="1">
-                <ListBox />
+                <TextBlock Text="Statystyki Postaci" Name="StatsOfCharacter"/>
             </Border>
         </Grid>
         

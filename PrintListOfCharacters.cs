@@ -11,10 +11,11 @@ namespace RPGCardsGenerator
 {
     class PrintListOfCharacters
     {
-        private void Print(bool playerCharacterOrNPC, ListBox exit, Window window)
+        private void Print(bool playerCharacterOrNPC, ListBox exit)
         {
             using (var dbContext = new BoardsContext())
             {
+                exit.Items.Clear();
                 var listOfCards = new List<Character>();
                 if (playerCharacterOrNPC)
                 {
@@ -33,14 +34,17 @@ namespace RPGCardsGenerator
                         listOfCards.Add(listofPlayersCharacter[i]);
                     }
                 }
-
-
+                for(int i = 0;i< listOfCards.Count; i++)
+                {
+                    exit.Items.Add(listOfCards[i].Id + " " + listOfCards[i].Name);
+                }
+                
 
             }
         }
-        public PrintListOfCharacters(bool playerCharacterOrNPC, ListBox exit, Window  window)
+        public PrintListOfCharacters(bool playerCharacterOrNPC, ListBox exit)
         {
-            
+            Print(playerCharacterOrNPC, exit);
         }
 
     }

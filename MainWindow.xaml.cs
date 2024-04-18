@@ -38,77 +38,12 @@ namespace RPGCardsGenerator
 
             
             InitializeComponent();
-            PrintAll(false);
+            PrintAll();
+
         }
-        public void PrintAll(bool WithStats = true)
+        public void PrintAll()
         {
-            /*
-            NpcOrCharacterTextBlockMain.Text = "";
-            using (var dbContext = new BoardsContext())
-            {
-                var list2 = dbContext.Statistics.ToList();
-
-                if (PlayerCharacterOrNPC)
-                {
-                   var list = dbContext.NPCs.ToList();
-                    if (list.Count > 0)
-                    {
-                        for (int i = 0; i < list.Count; i++)
-                        {
-                            NpcOrCharacterTextBlockMain.Text += (list[i].Id + " Imie: " + list[i].Name + '\n');
-
-
-                            if (WithStats)
-                            {
-                                for(int j =  0; j < list2.Count; j++)
-                                {
-                                    if (list[i].Id == list2[j].CharaterId)
-                                    {
-                                        NpcOrCharacterTextBlockMain.Text += (list2[j].Id + " Nazwa: " + list2[j].Name + " " + list2[j].Value);
-                                    }
-                                }
-                                NpcOrCharacterTextBlockMain.Text += '\n';
-                            }
-
-                        }
-                    }
-                    else
-                    {
-                        NpcOrCharacterTextBlockMain.Text = "Brak postaci NPC";
-                    }
-                }
-                else
-                {
-                  var list = dbContext.PlayerCharacters.ToList();
-                    if (list.Count > 0)
-                    {
-                        for (int i = 0; i < list.Count; i++)
-                        {
-                            NpcOrCharacterTextBlockMain.Text += ( list[i].Id.ToString() + " Imie: " + list[i].Name.ToString() + '\n');
-                            if (WithStats)
-                            {
-                                for (int j = 0; j < list2.Count; j++)
-                                {
-                                    if (list[i].Id == list2[j].CharaterId)
-                                    {
-                                        NpcOrCharacterTextBlockMain.Text += (list2[j].Id + " Nazwa: " + list2[j].Name + " " + list2[j].Value);
-                                    }
-                                }
-                                NpcOrCharacterTextBlockMain.Text += '\n';
-                            }
-                        }
-                    }
-                    else
-                    {
-                        NpcOrCharacterTextBlockMain.Text = "Brak postaci Graczy";
-                    }
-                }
-                
-                    
-
-                
-            }
-            */
+            PrintListOfCharacters printt = new PrintListOfCharacters(PlayerCharacterOrNPC, MainListBox);
         }
 
 
@@ -203,7 +138,7 @@ namespace RPGCardsGenerator
             {
                 NpcOrCharacterTextBlockTop.Text = "PlayeCharacter";
             }
-          //  PrintAll(false);
+            PrintAll();
 
         }
 
@@ -241,5 +176,10 @@ namespace RPGCardsGenerator
 
 
         #endregion
+
+        private void MainListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StatsOfCharacter.Text = MainListBox.SelectedIndex.ToString();
+        }
     }
 }
