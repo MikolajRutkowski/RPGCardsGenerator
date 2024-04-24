@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace RPGCardsGenerator
+namespace RPGCardsGenerator.Classes
 {
     class PrintListOfCharacters
     {
@@ -19,9 +19,9 @@ namespace RPGCardsGenerator
                 var listOfCards = new List<Character>();
                 if (playerCharacterOrNPC)
                 {
-                    
-                  var  listofNPC = dbContext.NPCs.ToList();
-                    for(int i = 0; i < listofNPC.Count; i++)
+
+                    var listofNPC = dbContext.NPCs.ToList();
+                    for (int i = 0; i < listofNPC.Count; i++)
                     {
                         listOfCards.Add(listofNPC[i]);
                     }
@@ -34,11 +34,11 @@ namespace RPGCardsGenerator
                         listOfCards.Add(listofPlayersCharacter[i]);
                     }
                 }
-                for(int i = 0;i< listOfCards.Count; i++)
+                for (int i = 0; i < listOfCards.Count; i++)
                 {
                     exit.Items.Add(listOfCards[i].Id + " " + listOfCards[i].Name);
                 }
-                
+
 
             }
         }

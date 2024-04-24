@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System;
 using System.Windows.Media.TextFormatting;
 using Microsoft.EntityFrameworkCore;
+using RPGCardsGenerator.Classes;
 
 
 
@@ -179,7 +180,10 @@ namespace RPGCardsGenerator
 
         private void MainListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            StatsOfCharacter.Text = MainListBox.SelectedIndex.ToString();
+            string x = MainListBox.SelectedItem.ToString(); //MainListBox.SelectedIndex.ToString();
+            x = new PrintAllStats(x).valuee; //x + " " + (string)z.valuee ;
+            StatsOfCharacter.Text = x;
+
         }
     }
 }
