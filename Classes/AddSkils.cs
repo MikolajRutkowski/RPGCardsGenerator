@@ -6,17 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGCardsGenerator
+namespace RPGCardsGenerator.Classes
 {
     public static class AddSkils
     {
         public static int rollDice(int k = 6)
         {
-            int results = new Random().Next(1,k+1);
+            int results = new Random().Next(1, k + 1);
             return results;
         }
 
-        public readonly static List<String> BaseCharacteristicName = new List<String>
+        public readonly static List<string> BaseCharacteristicName = new List<string>
         {
            "Siła", // 3k6     
            "Kondycja ", // 3k6
@@ -26,7 +26,7 @@ namespace RPGCardsGenerator
            "Inteligencja ", //2k6 + 6
            "Wykształcenie ", //2k6 + 6
            "Budowa Ciała",  //2k6 + 6
-           "Ruch" 
+           "Ruch"
         };
 
         public static List<Statistic> BaseCharacteristic = new List<Statistic>
@@ -42,8 +42,8 @@ namespace RPGCardsGenerator
            new Statistic("Ruch", TypeOfCariables.characteristic, "", 7)
 
         };
-       
-        public static List<Statistic> BaseSkils = new List<Statistic> 
+
+        public static List<Statistic> BaseSkils = new List<Statistic>
         {
             new Statistic("Antropologia", TypeOfCariables.skill, "", rollDice(20), 1),
             new Statistic("Archeologia", TypeOfCariables.skill, "", rollDice(20), 1),
@@ -88,9 +88,9 @@ namespace RPGCardsGenerator
             new Statistic("Ślusarstwo", TypeOfCariables.skill, "", rollDice(20), 1),
             new Statistic("Świat naturalny", TypeOfCariables.skill, "", rollDice(20), 1)
         };
-    
 
-        public readonly static List<String> BaseSkilsName = new List<String>
+
+        public readonly static List<string> BaseSkilsName = new List<string>
         {
            "Antropologia",
             "Archeologia",
@@ -139,7 +139,7 @@ namespace RPGCardsGenerator
         public static List<string> MakeLitOfstring(List<Statistic> baseList)
         {
             List<string> result = new List<string>();
-            for (int i = 0; i <  baseList.Count; i++)
+            for (int i = 0; i < baseList.Count; i++)
             {
                 result.Add(baseList[i].Name);
             }
@@ -157,8 +157,8 @@ namespace RPGCardsGenerator
                     return false;
                 }
                 var ListOfcharacterStats = MakeLitOfstring(user.Stats.ToList());
-                
-                for(int i = 0; i < BaseList.Count; i++)
+
+                for (int i = 0; i < BaseList.Count; i++)
                 {
                     if (!ListOfcharacterStats.Contains(BaseList[i].Name))
                     {
@@ -171,7 +171,7 @@ namespace RPGCardsGenerator
                             Type = BaseList[i].Type
 
 
-                        }) ;
+                        });
                     }
                 }
                 dbContext.SaveChanges();
@@ -181,6 +181,6 @@ namespace RPGCardsGenerator
             return true;
         }
 
-        
+
     }
 }
