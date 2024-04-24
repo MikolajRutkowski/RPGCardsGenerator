@@ -16,26 +16,31 @@ namespace RPGCardsGenerator
             {
                 if (suspect[i] ==' ')
                 {
-
+                    space = i;
+                    break;
                 }
             }
-
-
-
-
+            suspect.Remove(0,space);
+            x = int.Parse(suspect);
             return x;
         }
 
 
-        public void Print(int Id)
+        public string  Print(int Id)
         {
-
+            return Id.ToString();
         }
-        public void Print(int id)
+
+        public PrintAllStats(string longstinrg)
         {
-
-
+            int id = SepareteIdFromIdAndName(longstinrg);
+            Print(id);
         }
+        public PrintAllStats(int id)
+        {
+            Print(id);
+        }
+        
 
     }
 }
