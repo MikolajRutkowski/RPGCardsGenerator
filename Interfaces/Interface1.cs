@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGCardsGenerator.Variables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace RPGCardsGenerator.Interfaces
         public string PrintStatistic(int id);
         public string PrintHead(int id);
         public string PrintSkils(int id);
+
+        public string PrintOneSkils(Statistic stat);
 
 
 

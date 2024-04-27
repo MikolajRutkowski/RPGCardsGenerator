@@ -1,4 +1,5 @@
 ﻿using RPGCardsGenerator.Interfaces;
+using RPGCardsGenerator.Variables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,17 +31,65 @@ namespace RPGCardsGenerator.Classes
 
         public string PrintStatistic(int id)
         {
-            throw new NotImplementedException();
+            return PrintHead(id) + '\n' + PrintSkils(id); 
         }
 
         public string PrintHead(int id)
         {
-            throw new NotImplementedException();
+            string returnValue = "";
+            int enter = 0;
+            using(var dbConext = new BoardsContext())
+            {
+                var list = dbConext.Statistics.ToList().Where(u => u.CharaterId == id);
+                foreach (Statistic characteristicc in list)
+                {
+
+               
+                    if(characteristicc.Type == TypeOfCariables.characteristic)
+                    {
+                        returnValue += PrintOneSkils(characteristicc);
+                        enter++;
+                        if(enter == 3)
+                        {
+                            enter = 0;
+                            returnValue += '\n';
+                        }
+                    }
+                }
+
+            }
+            return returnValue;
         }
 
         public string PrintSkils(int id)
         {
-            throw new NotImplementedException();
+            string returnValue = "";
+            int enter = 0;
+            using (var dbConext = new BoardsContext())
+            {
+                var list = dbConext.Statistics.ToList().Where(u => u.CharaterId == id);
+                foreach (Statistic characteristicc in list)
+                {
+
+                    if (characteristicc.Type == TypeOfCariables.skill)
+                    {
+                        returnValue += PrintOneSkils(characteristicc);
+                        enter++;
+                        if (enter == 3)
+                        {
+                            enter = 0;
+                            returnValue += '\n';
+                        }
+                    }
+                }
+
+            }
+            return returnValue;
+        }
+
+        public string PrintOneSkils(Statistic stat)
+        {
+            return stat.Name + " " + stat.Value + " ";
         }
 
         public PrintAllStats(string longstinrg)
