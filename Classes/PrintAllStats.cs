@@ -31,49 +31,36 @@ namespace RPGCardsGenerator.Classes
 
         public string PrintStatistic(int id)
         {
-            return PrintHead(id) + '\n' + PrintSkils(id); 
+            return PrintSkils(id, TypeOfCariables.characteristic) + '\n' + PrintSkils(id, TypeOfCariables.skill); 
         }
 
         public string PrintHead(int id)
         {
             string returnValue = "";
-            int enter = 0;
-            using(var dbConext = new BoardsContext())
-            {
-                var list = dbConext.Statistics.ToList().Where(u => u.CharaterId == id);
-                foreach (Statistic characteristicc in list)
-                {
-
-               
-                    if(characteristicc.Type == TypeOfCariables.characteristic)
-                    {
-                        returnValue += PrintOneSkils(characteristicc);
-                        enter++;
-                        if(enter == 3)
-                        {
-                            enter = 0;
-                            returnValue += '\n';
-                        }
-                    }
-                }
-
-            }
             return returnValue;
         }
 
-        public string PrintSkils(int id)
+        public string PrintSkils(int id, TypeOfCariables type)
         {
             string returnValue = "";
             int enter = 0;
             using (var dbConext = new BoardsContext())
             {
                 var list = dbConext.Statistics.ToList().Where(u => u.CharaterId == id);
+                int maxLenght = 0;
+                foreach (Statistic item in list)
+                {
+                    if(item.Type == type && maxLenght < item.Name.Length)
+                    {
+                        maxLenght = item.Name.Length;
+                    }
+                }
                 foreach (Statistic characteristicc in list)
                 {
 
-                    if (characteristicc.Type == TypeOfCariables.skill)
+                    if (characteristicc.Type == type)
                     {
-                        returnValue += PrintOneSkils(characteristicc);
+                        returnValue += PrintOneSkils(characteristicc,maxLenght);
                         enter++;
                         if (enter == 3)
                         {
@@ -87,9 +74,14 @@ namespace RPGCardsGenerator.Classes
             return returnValue;
         }
 
-        public string PrintOneSkils(Statistic stat)
+        public string PrintOneSkils(Statistic stat, int whiteSpace = 0)
         {
-            return stat.Name + " " + stat.Value + " ";
+            string returnValue = stat.Name + " " + stat.Value;
+            for (int i = 0;i <= 0; i++)
+            {
+                returnValue += " ";
+            }
+            return returnValue;
         }
 
         public PrintAllStats(string longstinrg)
