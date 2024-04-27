@@ -166,15 +166,6 @@ namespace RPGCardsGenerator
 
         }
 
-        private void Button_Click_10(object sender, RoutedEventArgs e)
-        {
-
-            AddSkils.MakeBase(2005, AddSkils.BaseCharacteristic);
-            AddSkils.MakeBase(2006, AddSkils.BaseSkils);
-
-
-        }
-
 
         #endregion
 
