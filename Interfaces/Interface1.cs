@@ -12,9 +12,9 @@ namespace RPGCardsGenerator.Interfaces
     {
         public string PrintStatistic(int id);
         public string PrintHead(int id);
-        public string PrintSkils(int id);
+        public string PrintSkils(int id, TypeOfCariables type );
 
-        public string PrintOneSkils(Statistic stat);
+        public string PrintOneSkils(Statistic stat, int whiteSpace = 0);
 
 
 
