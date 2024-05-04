@@ -72,7 +72,7 @@
                 
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="1">
-                <TextBlock Text="Statystyki Postaci" Name="StatsOfCharacter"/>
+                <RichTextBox  Name="StatsOfCharacter"/>
             </Border>
         </Grid>
         
