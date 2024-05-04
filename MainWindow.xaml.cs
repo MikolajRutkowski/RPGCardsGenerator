@@ -17,6 +17,7 @@ using System;
 using System.Windows.Media.TextFormatting;
 using Microsoft.EntityFrameworkCore;
 using RPGCardsGenerator.Classes;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 
 
@@ -37,7 +38,7 @@ namespace RPGCardsGenerator
         {
             x = 1;
 
-            
+
             InitializeComponent();
             PrintAll();
 
@@ -53,25 +54,26 @@ namespace RPGCardsGenerator
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string returnString = "";
-            using (var dbContext = new BoardsContext() )
+            using (var dbContext = new BoardsContext())
             {
 
 
-                dbContext.PlayerCharacters.Add(new PlayerCharacter("Testowy Gracz nr:" + x.ToString()) );
+                dbContext.PlayerCharacters.Add(new PlayerCharacter("Testowy Gracz nr:" + x.ToString()));
                 dbContext.SaveChanges();
                 var ListOfPlayers = dbContext.PlayerCharacters.ToList();
 
-                foreach ( PlayerCharacter player in ListOfPlayers)
+                foreach (PlayerCharacter player in ListOfPlayers)
                 {
-                    returnString += "Postać: " + player.Name + " Jego statsy:"  + '\n';
+                    returnString += "Postać: " + player.Name + " Jego statsy:" + '\n';
                     var listofStatsOfMyPlayer = player.Stats.ToList();
-                    foreach(Statistic statistic in listofStatsOfMyPlayer) {
-                        returnString += "Statystyka nr" + statistic.Id + " jej wartośc: " + statistic.Value + '\n'; 
+                    foreach (Statistic statistic in listofStatsOfMyPlayer)
+                    {
+                        returnString += "Statystyka nr" + statistic.Id + " jej wartośc: " + statistic.Value + '\n';
                     }
                     returnString += '\n';
                 }
 
-               // JEDEN.Text =  returnString;
+                // JEDEN.Text =  returnString;
                 x++;
             }
 
@@ -85,16 +87,16 @@ namespace RPGCardsGenerator
             string returnString = "";
             using (var dbContext = new BoardsContext())
             {
-                
+
                 dbContext.SaveChanges();
-                var postac  = dbContext.PlayerCharacters.ToList();
-                for ( int i = 0; i < postac.Count; i++)
+                var postac = dbContext.PlayerCharacters.ToList();
+                for (int i = 0; i < postac.Count; i++)
                 {
                     returnString = postac[i].Name;
                 }
-                
-                
-               
+
+
+
             }
 
             //JEDEN.Text += returnString;
@@ -102,15 +104,15 @@ namespace RPGCardsGenerator
 
         }
 
-       
 
 
 
-        
+
+
         private void Button_Click3(object sender, RoutedEventArgs e)
         {
             //dodac nowa statystyke testowa
-            using(var dbContext = new BoardsContext())
+            using (var dbContext = new BoardsContext())
             {
                 var listCharacter = dbContext.PlayerCharacters.ToList();
                 dbContext.Statistics.Add(new Statistic()
@@ -120,14 +122,14 @@ namespace RPGCardsGenerator
                     Name = "Archelogia",
                     Type = TypeOfCariables.skill
 
-                }) ;
+                });
                 dbContext.SaveChanges();
             }
 
 
 
         }
-        
+
         private void NPCToCharacterAndBack(object sender, RoutedEventArgs e)
         {
             PlayerCharacterOrNPC = !PlayerCharacterOrNPC;
@@ -143,7 +145,7 @@ namespace RPGCardsGenerator
 
         }
 
-        
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
@@ -153,7 +155,7 @@ namespace RPGCardsGenerator
                 var user = dbContext.Characters.Include(u => u.Stats).FirstOrDefault(c => c.Id == 1005);
                 if (user == null)
                 {
-                    
+
                 }
                 // sposób 1 gorszy bo 2 zapytania SQL
                 // var ListOfcharacterStats = dbContext.Statistics.Where(x => x.CharaterId == user.Id).ToList();
@@ -171,10 +173,33 @@ namespace RPGCardsGenerator
 
         private void MainListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string x = MainListBox.SelectedItem.ToString(); //MainListBox.SelectedIndex.ToString();
-            x = new PrintAllStats(x).valuee; //x + " " + (string)z.valuee ;
-            StatsOfCharacter.Text = x;
+            //string x = MainListBox.SelectedItem.ToString(); //MainListBox.SelectedIndex.ToString();
+            //x = new PrintAllStats(x).valuee; //x + " " + (string)z.valuee ;
+            //StatsOfCharacter.AppendText(x);
+            StatsOfCharacter.BeginChange();
+            StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).CharacterTable);
+            StatsOfCharacter.EndChange();
 
+        }
+        private void InsertTable(object sender, RoutedEventArgs e)
+        {
+            StatsOfCharacter.BeginChange();
+            var table = new System.Windows.Documents.Table();
+            var gridLenghtConvertor = new GridLengthConverter();
+            table.Columns.Add(new TableColumn());
+            table.Columns.Add(new TableColumn());
+            table.Columns.Add(new TableColumn());
+
+            table.RowGroups.Add(new TableRowGroup());
+            for (int i = 0; i < 3; i++)
+            {
+                table.RowGroups[0].Rows.Add(new TableRow());
+                table.RowGroups[0].Rows[i].Cells.Add(new TableCell());
+                table.RowGroups[0].Rows[i].Cells.Add(new TableCell());
+                table.RowGroups[0].Rows[i].Cells.Add(new TableCell());
+            }
+            StatsOfCharacter.Document.Blocks.Add(table);
+            StatsOfCharacter.EndChange();
         }
     }
 }

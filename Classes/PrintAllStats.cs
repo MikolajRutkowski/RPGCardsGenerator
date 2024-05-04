@@ -5,12 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace RPGCardsGenerator.Classes
 {
     public class PrintAllStats : IPrintStatistic
     {
-        public string   valuee { get; private set; }
+        public string valuee { get; private set; }
+        public Table MainTable { get; private set; }
+        public Table SkilTable { get; private set; }
+        public Table CharacterTable { get; private set; }
         public int SepareteIdFromIdAndName(string suspect)
         {
             int x = 0;
@@ -28,72 +32,59 @@ namespace RPGCardsGenerator.Classes
             return x;
         }
 
-
-        public string PrintStatistic(int id)
+        public string PrintOneSkils(Statistic stat)
         {
-            return PrintSkils(id, TypeOfCariables.characteristic) + '\n' + PrintSkils(id, TypeOfCariables.skill); 
-        }
-
-        public string PrintHead(int id)
-        {
-            string returnValue = "";
+            string returnValue = stat.Name + " " + stat.Value;
             return returnValue;
         }
 
-        public string PrintSkils(int id, TypeOfCariables type)
+        public List<Statistic> ReturnListOfStatistic(int id, TypeOfCariables type)
         {
-            string returnValue = "";
-            int enter = 0;
+            var returnList = new List<Statistic>();
             using (var dbConext = new BoardsContext())
             {
                 var list = dbConext.Statistics.ToList().Where(u => u.CharaterId == id);
-                int maxLenght = 0;
-                foreach (Statistic item in list)
-                {
-                    if(item.Type == type && maxLenght < item.Name.Length)
-                    {
-                        maxLenght = item.Name.Length;
-                    }
-                }
                 foreach (Statistic characteristicc in list)
                 {
 
                     if (characteristicc.Type == type)
                     {
-                        returnValue += PrintOneSkils(characteristicc,maxLenght);
-                        enter++;
-                        if (enter == 3)
-                        {
-                            enter = 0;
-                            returnValue += '\n';
-                        }
+                        returnList.Add(characteristicc);
+
                     }
                 }
-
             }
-            return returnValue;
-        }
-
-        public string PrintOneSkils(Statistic stat, int whiteSpace = 0)
-        {
-            string returnValue = stat.Name + " " + stat.Value;
-            for (int i = 0;i <= 0; i++)
-            {
-                returnValue += " ";
-            }
-            return returnValue;
+            return returnList;
         }
 
         public PrintAllStats(string longstinrg)
         {
             int id = SepareteIdFromIdAndName(longstinrg);
-           valuee = PrintStatistic(id);
+            List<Statistic> list1 = ReturnListOfStatistic(id, TypeOfCariables.characteristic);
+            CharacterTable = ReturnTableForRichTextBox(list1);
         }
         public PrintAllStats(int id)
         {
-           valuee = PrintStatistic(id);
+            List<Statistic> list1 = ReturnListOfStatistic(id, TypeOfCariables.characteristic);
+            CharacterTable = ReturnTableForRichTextBox(list1);
         }
 
+        public Table ReturnTableForRichTextBox(List<Statistic> listOfStatistic, int x = 3, int y = 3)
+        {
+            var returnTable = new System.Windows.Documents.Table();
+            if (y == 0)
+            {
+                y = SetY(listOfStatistic.Capacity);
+            }
 
+
+
+
+            return returnTable;
+        }
+        private int SetY(int listOfElement) {
+            
+            return 3;
+        }
     }
 }
