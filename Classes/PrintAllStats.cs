@@ -1,4 +1,5 @@
-﻿using RPGCardsGenerator.Interfaces;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using RPGCardsGenerator.Interfaces;
 using RPGCardsGenerator.Variables;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace RPGCardsGenerator.Classes
     public class PrintAllStats : IPrintStatistic
     {
         public string valuee { get; private set; }
-        public Table MainTable { get; private set; }
-        public Table SkilTable { get; private set; }
-        public Table CharacterTable { get; private set; }
+        public System.Windows.Documents.Table MainTable { get; private set; }
+        public System.Windows.Documents.Table SkilTable { get; private set; }
+        public System.Windows.Documents.Table CharacterTable { get; private set; }
         public int SepareteIdFromIdAndName(string suspect)
         {
             int x = 0;
@@ -54,6 +55,8 @@ namespace RPGCardsGenerator.Classes
                     }
                 }
             }
+            //czy to działa?
+            string returnLi = returnList[0].Name;
             return returnList;
         }
 
@@ -68,19 +71,48 @@ namespace RPGCardsGenerator.Classes
             List<Statistic> list1 = ReturnListOfStatistic(id, TypeOfCariables.characteristic);
             CharacterTable = ReturnTableForRichTextBox(list1);
         }
-
-        public Table ReturnTableForRichTextBox(List<Statistic> listOfStatistic, int x = 3, int y = 3)
+        
+        public System.Windows.Documents.Table ReturnTableForRichTextBox(List<Statistic> listOfStatistic, int x = 3, int y = 3)
         {
-            var returnTable = new System.Windows.Documents.Table();
+
             if (y == 0)
             {
                 y = SetY(listOfStatistic.Capacity);
             }
+            // Deklaracja tabeli o 3 wierszach i 3 kolumnach
+            var table = new System.Windows.Documents.Table();
+            for (int i = 0; i < y; i++)
+            {
+                table.Columns.Add(new TableColumn());
+            }
+            
+            // Utworzenie grupy wierszy
+            table.RowGroups.Add(new TableRowGroup());
+
+            int index = 0;
+            string value = "";
+            // Dodanie wierszy z danymi do tabeli
+            for (int yy = 0; yy < y; yy++)
+            {
+                TableRow row = new TableRow();
+
+                for (int xx = 0; xx < x; xx++)
+                {
+                    if(index > listOfStatistic.Count)
+                    {
+                        break;
+                    }
+                    // Tworzenie komórki i dodawanie do niej danych
+                    value = "sdsdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";//PrintOneSkils(listOfStatistic[0]);
+                    TableCell cell = new TableCell(new Paragraph(new Run(value)));   
+                    row.Cells.Add(cell);
+                    index++;
+                }
+                table.RowGroups[0].Rows.Add(row);
+            }
 
 
-
-
-            return returnTable;
+            return table;
         }
         private int SetY(int listOfElement) {
             
