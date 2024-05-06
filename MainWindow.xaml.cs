@@ -177,6 +177,7 @@ namespace RPGCardsGenerator
             //x = new PrintAllStats(x).valuee; //x + " " + (string)z.valuee ;
             //StatsOfCharacter.AppendText(x);
             StatsOfCharacter.BeginChange();
+            StatsOfCharacter.Document.Blocks.Clear();
             StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).CharacterTable);
             StatsOfCharacter.EndChange();
 
