@@ -15,6 +15,13 @@ namespace RPGCardsGenerator.Variables
         {
            
         }
-      
+        public override List<string> ReturnMainInfo()
+        {
+            var returnList = new List<string>();
+            returnList.Add(this.Id.ToString());
+            returnList.Add(this.Name);
+            returnList.Add(this.reputacja);
+            return returnList;
+        }
     }
 }

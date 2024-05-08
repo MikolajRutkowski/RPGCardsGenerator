@@ -29,14 +29,14 @@ namespace RPGCardsGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
-        int x;
+        int Cotokurwajest;
         static bool PlayerCharacterOrNPC = false;
         public delegate void Reload();
         public event EventHandler PlayerCharacterChanged;
 
         public MainWindow()
         {
-            x = 1;
+            Cotokurwajest = 1;
 
 
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace RPGCardsGenerator
             {
 
 
-                dbContext.PlayerCharacters.Add(new PlayerCharacter("Testowy Gracz nr:" + x.ToString()));
+                dbContext.PlayerCharacters.Add(new PlayerCharacter("Testowy Gracz nr:" + Cotokurwajest.ToString()));
                 dbContext.SaveChanges();
                 var ListOfPlayers = dbContext.PlayerCharacters.ToList();
 
@@ -74,7 +74,7 @@ namespace RPGCardsGenerator
                 }
 
                 // JEDEN.Text =  returnString;
-                x++;
+                Cotokurwajest++;
             }
 
 
@@ -158,7 +158,7 @@ namespace RPGCardsGenerator
 
                 }
                 // sposób 1 gorszy bo 2 zapytania SQL
-                // var ListOfcharacterStats = dbContext.Statistics.Where(x => x.CharaterId == user.Id).ToList();
+                // var ListOfcharacterStats = dbContext.Statistics.Where(Cotokurwajest => Cotokurwajest.CharaterId == user.Id).ToList();
                 //2 lepszy
                 var ListOfcharacterStats = user.Stats;
 
@@ -173,14 +173,17 @@ namespace RPGCardsGenerator
 
         private void MainListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //string x = MainListBox.SelectedItem.ToString(); //MainListBox.SelectedIndex.ToString();
-            //x = new PrintAllStats(x).valuee; //x + " " + (string)z.valuee ;
-            //StatsOfCharacter.AppendText(x);
-            StatsOfCharacter.BeginChange();
-            StatsOfCharacter.Document.Blocks.Clear();
-            StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).CharacterTable);
-            StatsOfCharacter.EndChange();
-
+            if(MainListBox.SelectedItem != null)
+            {
+                string x = MainListBox.SelectedItem.ToString(); //MainListBox.SelectedIndex.ToString();
+                                                              //StatsOfCharacter.AppendText(Cotokurwajest);
+                StatsOfCharacter.BeginChange();
+                StatsOfCharacter.Document.Blocks.Clear();
+                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).MainTable);
+                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).CharacterTable);
+                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).SkilTable);
+                StatsOfCharacter.EndChange();
+            }
         }
         private void InsertTable(object sender, RoutedEventArgs e)
         {

@@ -11,12 +11,12 @@ namespace RPGCardsGenerator.Interfaces
 {
     public interface IPrintStatistic
     {
-
-        public List<Statistic> ReturnListOfStatistic(int id, TypeOfCariables type);
+        
+        public List<String> ReturnListOfStatistic(int id, TypeOfCariables type);
 
         public string PrintOneSkils(Statistic stat);
 
-        public Table ReturnTableForRichTextBox(List<Statistic> listOfStrings, int x, int y);
+        public Table ReturnTableForRichTextBox(List<String> listOfStrings, int x, int y);
   
 
 

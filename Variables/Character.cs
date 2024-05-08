@@ -17,9 +17,8 @@ namespace RPGCardsGenerator.Variables
         public string Name { get; set; }
         public virtual List<Statistic> Stats { get; set; } = new List<Statistic>();
 
+        public abstract List<string> ReturnMainInfo();
         
-
-
         public Character(string name)
         {
             this.Name = name;

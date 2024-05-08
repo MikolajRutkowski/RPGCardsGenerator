@@ -12,7 +12,6 @@ namespace RPGCardsGenerator.Classes
 {
     public class PrintAllStats : IPrintStatistic
     {
-        public string valuee { get; private set; }
         public System.Windows.Documents.Table MainTable { get; private set; }
         public System.Windows.Documents.Table SkilTable { get; private set; }
         public System.Windows.Documents.Table CharacterTable { get; private set; }
@@ -39,9 +38,9 @@ namespace RPGCardsGenerator.Classes
             return returnValue;
         }
 
-        public List<Statistic> ReturnListOfStatistic(int id, TypeOfCariables type)
+        public List<string> ReturnListOfStatistic(int id, TypeOfCariables type)
         {
-            var returnList = new List<Statistic>();
+            var returnList = new List<string>();
             using (var dbConext = new BoardsContext())
             {
                 var list = dbConext.Statistics.ToList().Where(u => u.CharaterId == id);
@@ -50,31 +49,52 @@ namespace RPGCardsGenerator.Classes
 
                     if (characteristicc.Type == type)
                     {
-                        returnList.Add(characteristicc);
+                        returnList.Add(PrintOneSkils( characteristicc));
 
                     }
                 }
             }
             //czy to działa?
-            string returnLi = returnList[0].Name;
             return returnList;
+        }
+
+        private List<string> MadeMainTable(int id)
+        {
+            using (var dbConext = new BoardsContext())
+            {
+               var suspect = dbConext.Characters.Find(id);
+                List<String> returnlist = suspect.ReturnMainInfo();
+                return returnlist;
+
+            }
         }
 
         public PrintAllStats(string longstinrg)
         {
             int id = SepareteIdFromIdAndName(longstinrg);
-            List<Statistic> list1 = ReturnListOfStatistic(id, TypeOfCariables.characteristic);
-            CharacterTable = ReturnTableForRichTextBox(list1);
+            CharacterTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.characteristic));
+            MainTable = ReturnTableForRichTextBox(MadeMainTable(id),4,1);
+            SkilTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.skill));
         }
         public PrintAllStats(int id)
         {
-            List<Statistic> list1 = ReturnListOfStatistic(id, TypeOfCariables.characteristic);
-            CharacterTable = ReturnTableForRichTextBox(list1);
+            CharacterTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.characteristic));
+            MainTable = ReturnTableForRichTextBox(MadeMainTable(id), 4, 1);
+            SkilTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.skill));
         }
         
-        public System.Windows.Documents.Table ReturnTableForRichTextBox(List<Statistic> listOfStatistic, int x = 3, int y = 3)
+        public System.Windows.Documents.Table ReturnTableForRichTextBox(List<string> listOfStatistic, int x = 3, int y = 3)
         {
-
+            if (listOfStatistic.Count == 0)
+            {
+                System.Windows.Documents.Table table1 = new System.Windows.Documents.Table();
+                table1.Columns.Add(new TableColumn());
+                table1.RowGroups.Add(new TableRowGroup());
+                TableRow row = new TableRow();
+                row.Cells.Add(new TableCell(new Paragraph(new Run("Brak Danych!"))));
+                table1.RowGroups[0].Rows.Add(row);
+                return table1;
+            }
             if (y == 0)
             {
                 y = SetY(listOfStatistic.Capacity);
@@ -97,13 +117,13 @@ namespace RPGCardsGenerator.Classes
                 TableRow row = new TableRow();
 
                 for (int xx = 0; xx < x; xx++)
-                {
-                    if(index > listOfStatistic.Count)
+                {           
+                    if(index + 1 > listOfStatistic.Count)
                     {
                         break;
                     }
                     // Tworzenie komórki i dodawanie do niej danych
-                    value = "sdsdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";//PrintOneSkils(listOfStatistic[0]);
+                    value = listOfStatistic[index];
                     TableCell cell = new TableCell(new Paragraph(new Run(value)));   
                     row.Cells.Add(cell);
                     index++;
