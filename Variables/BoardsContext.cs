@@ -39,13 +39,13 @@ namespace RPGCardsGenerator.Variables
             }) ;
             modelBuilder.Entity<PlayerCharacter>(pc =>
             {
-               // pc.Property(x => x.Expiries).HasDefaultValue(0);
+               // pc.Property(Cotokurwajest => Cotokurwajest.Expiries).HasDefaultValue(0);
               
             });
 
             modelBuilder.Entity<NPC>(nop =>
             {
-              //  nop.Property(x => x.reputacja).HasDefaultValue("Neutralny");
+              //  nop.Property(Cotokurwajest => Cotokurwajest.reputacja).HasDefaultValue("Neutralny");
             });
         }
 
