@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPGCardsGenerator"
         mc:Ignorable="d"
+        
 
         Title="MainWindow" Height="450" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:CustomCommands.Exit"
+                        CanExecute="CommandBinding_CanExecute_True"
+                        Executed="CommandBinding_Exit"
+                        />
+    </Window.CommandBindings>
     <Grid x:Name="MainGrid">
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -24,13 +31,13 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator></Separator>
-                    <MenuItem Header="Exit" Command="Close"/>
+                    <MenuItem  Command="local:CustomCommands.Exit"/>
                 </MenuItem>
                 <MenuItem Header="Edit">
                     <MenuItem  Command="Copy"/>
                     <MenuItem  Command="Cut"/>
                     <MenuItem  Command="Paste"/>
-                    <MenuItem Header="Increase Size" Command="IncreaseFontSize"/>
+                    <MenuItem  Command="IncreaseFontSize"  />
                 </MenuItem>
                 <MenuItem Header="Future"/>
                 <MenuItem Header="Refresh" />
