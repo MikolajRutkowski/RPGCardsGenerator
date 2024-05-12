@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RPGCardsGenerator.Classes;
+using RPGCardsGenerator.Variables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,33 @@ namespace RPGCardsGenerator
         public NewCharacterWindow()
         {
             InitializeComponent();
+            List<Statistic> BaseListOfSkils = AddSkils.BaseSkils;
+            List<Statistic> BaseListOfCharacter = AddSkils.BaseCharacteristic;
+            foreach (Statistic statistic in BaseListOfSkils)
+            {
+                statistic.Value = 0;
+            }
+            foreach (Statistic statistic in BaseListOfCharacter)
+            {
+                statistic.Value = 1;
+            }
+            StatsOfCharacter.BeginChange();
+            StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfCharacter).SkilTable);
+            StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfSkils).SkilTable);
+            StatsOfCharacter.EndChange();
+
+            
+        }
+
+        public static List<string> GetLinesFromRichTextBox(System.Windows.Controls.RichTextBox richTextBox)
+        {
+            var lines = new List<string>();
+            string text = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd).Text;  
+            string[] separators = ["\r\n", "\r", "\n", "\t"];
+            string[] textLines = text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+            lines.AddRange(textLines);
+
+            return lines;
         }
     }
 }

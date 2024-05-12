@@ -5,91 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPGCardsGenerator"
         mc:Ignorable="d"
-        Title="NewCharacterWindow" Height="450" Width="800">
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Button Content="Przycisk 1"/>
-            <Button Content="Przycisk 2"/>
-            <Button Content="Przycisk 3"/>
-        </StackPanel>
+        Title="NewCharacterWindow" Height="450" Width="450">
+    <Grid x:Name="MainGrid">
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File">
+                    <MenuItem Command="local:CustomCommands.NewCharacter">
+                        <MenuItem.Icon>
+                            <Image Source="/Icons/NewFile.png"  />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Command="Open"/>
+                    <MenuItem Command="Save">
+                        <MenuItem.Icon>
+                            <Image Source="/Icons/SaveFile.png" Width="Auto"/>
 
-        <StackPanel>
-            <!-- Pierwsza tabela z jednym wierszem i 4 kolumnami -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <!-- Komórki pierwszej tabeli -->
-                <Border BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 1" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 2" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 3" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 4" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-            </Grid>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator></Separator>
+                    <MenuItem  Command="local:CustomCommands.Exit"/>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem  Command="Copy"/>
+                    <MenuItem  Command="Cut"/>
+                    <MenuItem  Command="Paste"/>
+                    <MenuItem  Command="IncreaseFontSize"  />
+                </MenuItem>
+                <MenuItem Header="Future"/>
+                <MenuItem Header="Refresh" />
+            </Menu>
+            <TextBlock>dsdssd</TextBlock>
 
-            <!-- Druga tabela 3 na 3 -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <!-- Komórki drugiej tabeli -->
-                <Border BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 1" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 2" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 3" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1">
-                    <Grid>
-                        
-                    </Grid>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 5" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 6" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 7" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 8" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Komórka 9" TextWrapping="Wrap" Margin="5"/>
-                </Border>
-            </Grid>
+        </DockPanel>
 
-            <!-- Trzecia tabela z 3 kolumnami, do której można dodawać nowe komórki -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <!-- Tutaj możesz dodać elementy do trzeciej tabeli -->
-            </Grid>
-        </StackPanel>
-    </DockPanel>
+        <Grid Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border Background="LightGray" Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="Nowa Karta Postaci"/>
+            </Border>
+            <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
+                <RichTextBox  Name="StatsOfCharacter"  />
+            </Border>
+        </Grid>
+
+    </Grid>
 </Window>

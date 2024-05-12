@@ -91,7 +91,9 @@ namespace RPGCardsGenerator
 
         private void CommandBinding_Exit(object sender, ExecutedRoutedEventArgs e)
         {
-            App.Current.Shutdown();
+             App.Current.Shutdown();
+          // var list =  GetLinesFromRichTextBox(StatsOfCharacter);
+            //int x = 0 ;
         }
 
         private void CommandBinding_NewCharacter(object sender, ExecutedRoutedEventArgs e)
@@ -100,6 +102,9 @@ namespace RPGCardsGenerator
             newCharacterWindow.Show();
         }
 
+
         #endregion
+
+        
     }
 }

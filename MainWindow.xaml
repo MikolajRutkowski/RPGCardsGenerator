@@ -81,7 +81,7 @@
                 
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="1">
-                <RichTextBox  Name="StatsOfCharacter"/>
+                <RichTextBox  Name="StatsOfCharacter" />
             </Border>
         </Grid>
         
