@@ -11,7 +11,7 @@ namespace RPGCardsGenerator
     {
         public static readonly RoutedUICommand Exit = new RoutedUICommand(
             "Exit from app",
-            "Exitttttttt",
+            "Exit",
             typeof(CustomCommands),
             new InputGestureCollection()
             {
@@ -22,7 +22,7 @@ namespace RPGCardsGenerator
 
         public static readonly RoutedUICommand NewCharacter = new RoutedUICommand(
             "Create NewCharacter",
-            "Exit",
+            "NewCharacter",
             typeof(CustomCommands),
             new InputGestureCollection()
             {
