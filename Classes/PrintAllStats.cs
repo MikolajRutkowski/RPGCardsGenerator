@@ -58,6 +58,21 @@ namespace RPGCardsGenerator.Classes
             return returnList;
         }
 
+        public List<string> ReturnListOfStatistic(List<Statistic> oldList)
+        {
+            var returnList = new List<string>();
+            
+                foreach (Statistic characteristicc in oldList)
+                {
+  
+                        returnList.Add(PrintOneSkils(characteristicc));
+
+                }
+            
+            //czy to działa?
+            return returnList;
+        }
+
         private List<string> MadeMainTable(int id)
         {
             using (var dbConext = new BoardsContext())
@@ -68,6 +83,8 @@ namespace RPGCardsGenerator.Classes
 
             }
         }
+
+        
 
         public PrintAllStats(string longstinrg)
         {
@@ -81,6 +98,11 @@ namespace RPGCardsGenerator.Classes
             CharacterTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.characteristic));
             MainTable = ReturnTableForRichTextBox(MadeMainTable(id), 4, 1);
             SkilTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.skill));
+        }
+
+        public PrintAllStats(List<Statistic> skilList)
+        {
+            this.SkilTable = ReturnTableForRichTextBox(ReturnListOfStatistic(skilList),3, 20);
         }
         
         public System.Windows.Documents.Table ReturnTableForRichTextBox(List<string> listOfStatistic, int x = 3, int y = 3)
