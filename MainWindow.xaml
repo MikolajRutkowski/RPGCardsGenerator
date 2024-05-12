@@ -5,20 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPGCardsGenerator"
         mc:Ignorable="d"
-        
-
         Title="MainWindow" Height="450" Width="800">
     <Window.CommandBindings>
         <CommandBinding Command="local:CustomCommands.Exit"
                         CanExecute="CommandBinding_CanExecute_True"
                         Executed="CommandBinding_Exit"
                         />
+        <CommandBinding Command="local:CustomCommands.NewCharacter"
+                CanExecute="CommandBinding_CanExecute_True"
+                Executed="CommandBinding_NewCharacter"
+                />
     </Window.CommandBindings>
     <Grid x:Name="MainGrid">
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
-                    <MenuItem Command="New">
+                    <MenuItem Command="local:CustomCommands.NewCharacter">
                         <MenuItem.Icon>
                             <Image Source="/Icons/NewFile.png"  />
                         </MenuItem.Icon>

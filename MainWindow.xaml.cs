@@ -94,6 +94,12 @@ namespace RPGCardsGenerator
             App.Current.Shutdown();
         }
 
+        private void CommandBinding_NewCharacter(object sender, ExecutedRoutedEventArgs e)
+        {
+            NewCharacterWindow newCharacterWindow = new NewCharacterWindow();
+            newCharacterWindow.Show();
+        }
+
         #endregion
     }
 }
