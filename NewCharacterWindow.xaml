@@ -46,8 +46,20 @@
             <Grid.ColumnDefinitions >
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Border Background="LightGray" Grid.Row="0" Grid.Column="0">
-                <TextBlock Text="Nowa Karta Postaci"/>
+            <Border Background="LightGreen" Grid.Row="0" Grid.Column="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Nowa Karta Postaci"/>
+                    <Button Grid.Column="1" Click="Add_New_Character" >Dodaj postać</Button>
+                    <Button Grid.Column="2" Click="Random_Stats" >Losuj Statystyki</Button>
+                    <Button Grid.Column="3" Click="Chec_Stats" >Sprawdź Statystyki</Button>
+                </Grid>
+                
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
                 <RichTextBox  Name="StatsOfCharacter"  />

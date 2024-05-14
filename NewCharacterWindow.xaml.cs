@@ -42,15 +42,21 @@ namespace RPGCardsGenerator
             
         }
 
-        public static List<string> GetLinesFromRichTextBox(System.Windows.Controls.RichTextBox richTextBox)
-        {
-            var lines = new List<string>();
-            string text = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd).Text;  
-            string[] separators = ["\r\n", "\r", "\n", "\t"];
-            string[] textLines = text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
-            lines.AddRange(textLines);
+       
 
-            return lines;
+        private void Add_New_Character(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Random_Stats(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Chec_Stats(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
