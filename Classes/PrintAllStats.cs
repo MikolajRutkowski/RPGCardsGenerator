@@ -98,6 +98,7 @@ namespace RPGCardsGenerator.Classes
             CharacterTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.characteristic));
             MainTable = ReturnTableForRichTextBox(MadeMainTable(id), 4, 1);
             SkilTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.skill));
+            SkilTable.BorderThickness.Equals(10);
         }
 
         public PrintAllStats(List<Statistic> skilList)
