@@ -36,16 +36,21 @@ namespace RPGCardsGenerator
             }
             StatsOfCharacter.BeginChange();
             StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfCharacter).SkilTable);
-            StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfSkils).SkilTable);
             StatsOfCharacter.EndChange();
+            SkilsOfCharacter.BeginChange();
+            SkilsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfSkils).SkilTable);
+            SkilsOfCharacter.EndChange();
 
-            
         }
 
        
 
         private void Add_New_Character(object sender, RoutedEventArgs e)
         {
+            GenerateNewCharacter newCharacter = new GenerateNewCharacter(StatsOfCharacter);
+            StatsOfCharacter.BeginChange();
+           // StatsOfCharacter.Document.Blocks.Clear();
+           // StatsOfCharacter.Document.Blocks.Add(
 
         }
 

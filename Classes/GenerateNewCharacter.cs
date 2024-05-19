@@ -9,9 +9,11 @@ namespace RPGCardsGenerator.Classes
 {
     public class GenerateNewCharacter
     {
-        
+        string jakistam;
         public GenerateNewCharacter(List<string> list) { }
-        public GenerateNewCharacter(System.Windows.Controls.RichTextBox richTextBox) { }
+        public GenerateNewCharacter(System.Windows.Controls.RichTextBox richTextBox) {
+         
+        }
 
         public bool Check()
         {
