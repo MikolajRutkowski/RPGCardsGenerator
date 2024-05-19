@@ -21,6 +21,9 @@ namespace RPGCardsGenerator
     /// </summary>
     public partial class NewCharacterWindow : Window
     {
+        private int IdOfExaple = 1005;
+
+
         public NewCharacterWindow()
         {
             InitializeComponent();
@@ -35,12 +38,17 @@ namespace RPGCardsGenerator
                 statistic.Value = 1;
             }
             StatsOfCharacter.BeginChange();
+            StatsOfCharacter.Document.Blocks.Clear();
             StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfCharacter).SkilTable);
             StatsOfCharacter.EndChange();
             SkilsOfCharacter.BeginChange();
+            SkilsOfCharacter.Document.Blocks.Clear();
             SkilsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfSkils).SkilTable);
             SkilsOfCharacter.EndChange();
-
+            InformationOfCharacter.BeginChange();
+            InformationOfCharacter.Document.Blocks.Clear();
+            InformationOfCharacter.Document.Blocks.Add(new PrintAllStats(IdOfExaple).MainTable);
+            InformationOfCharacter.EndChange();
         }
 
        

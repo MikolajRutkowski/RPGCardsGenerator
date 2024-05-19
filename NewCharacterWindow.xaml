@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPGCardsGenerator"
         mc:Ignorable="d"
-        Title="NewCharacterWindow" Height="450" Width="450">
+        Title="NewCharacterWindow" Height="500" Width="500">
     <Grid x:Name="MainGrid">
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -41,8 +41,8 @@
         <Grid Margin="0,20,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition  Height=" 40"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions >
