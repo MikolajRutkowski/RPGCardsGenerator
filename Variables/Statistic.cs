@@ -24,6 +24,41 @@ namespace RPGCardsGenerator.Variables
 
             
         }
+        public Statistic(int id, string name, string description, int value, TypeOfCariables type, Character character, int charaterId)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Value = value;
+            Type = type;
+            Character = character;
+            CharaterId = charaterId;
+        }
+        public Statistic(string NamePlusvalue)
+        {
+            Name = Separate(false, NamePlusvalue);
+            Value = int.Parse(Separate(true, NamePlusvalue));
+        }
+        public string Separate(bool firstOrSecond, string input)
+        {
+            int spaceIndex = input.IndexOf(' ');
+
+            if (spaceIndex == -1)
+            {
+                // Jeśli nie ma spacji, zwróć cały string jako pierwszy element, a drugi będzie pusty
+                return input;
+            }
+
+            string firstPart = input.Substring(0, spaceIndex);
+            string secondPart = input.Substring(spaceIndex + 1);
+
+            if (firstOrSecond)
+            {
+                return secondPart;
+            }
+            return firstPart;
+        }
+
         public Statistic(string name, TypeOfCariables type, string description = "", params int[] values)
         {
             this.Name = name;

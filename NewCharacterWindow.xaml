@@ -64,7 +64,7 @@
 
             </Border>
             <Border  Grid.Row="1" Grid.Column="0">
-                <RichTextBox  Name="InformationOfCharacter" BorderBrush="Black" Background="White"  />
+                <RichTextBox  Name="MainInformationOfCharacter" BorderBrush="Black" Background="White"  />
             </Border>
             <Border  Grid.Row="2" Grid.Column="0">
                 <RichTextBox  Name="StatsOfCharacter" BorderBrush="Black"  Background="#FF56CCCC"  />
