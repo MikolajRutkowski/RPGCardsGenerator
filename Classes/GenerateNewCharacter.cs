@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGCardsGenerator.Variables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,17 @@ namespace RPGCardsGenerator.Classes
 {
     public class GenerateNewCharacter
     {
-        string jakistam;
+        private List<Statistic> MainInfo;
+        private List<Statistic> Characteristics;
+        private List<Statistic> Skills;
+
+
+
         public GenerateNewCharacter(List<string> list) { }
-        public GenerateNewCharacter(System.Windows.Controls.RichTextBox richTextBox) {
+        public GenerateNewCharacter(System.Windows.Controls.RichTextBox MainRichTextBox,
+            System.Windows.Controls.RichTextBox CharacteristicsRichTextBox,
+            System.Windows.Controls.RichTextBox SkillsRichTextBox) {
+
          
         }
 
@@ -19,8 +28,17 @@ namespace RPGCardsGenerator.Classes
         {
             return true;
         }
+        public List<Statistic> FromStringToStatitic(List<string> strings)
+        {
+            List<Statistic> stats = new List<Statistic>();
+            foreach (string s in strings) { 
+            
+            }
+            return stats;
+        }
 
-        public static List<string> GetLinesFromRichTextBox(System.Windows.Controls.RichTextBox richTextBox)
+
+        public  List<string> GetLinesFromRichTextBox(System.Windows.Controls.RichTextBox richTextBox)
         {
             var lines = new List<string>();
             string text = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd).Text;
@@ -31,6 +49,9 @@ namespace RPGCardsGenerator.Classes
             return lines;
         }
 
+        public bool AddToDataBase() { 
+            
+            return true; }
 
     }
 }
