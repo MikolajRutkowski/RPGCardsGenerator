@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPGCardsGenerator"
         mc:Ignorable="d"
-        Title="NewCharacterWindow" Height="500" Width="500">
+        Title="NewCharacterWindow" Height="1000" Width="1400">
     <Grid x:Name="MainGrid">
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -41,8 +41,8 @@
         <Grid Margin="0,20,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
-                <RowDefinition  Height=" 40"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition  Height=" 60"/>
+                <RowDefinition Height="120"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions >
@@ -64,13 +64,13 @@
 
             </Border>
             <Border  Grid.Row="1" Grid.Column="0">
-                <RichTextBox  Name="MainInformationOfCharacter" BorderBrush="Black" Background="White"  />
+                <RichTextBox  Name="MainInformationOfCharacter" BorderBrush="Black" Background="White" FontSize="25" />
             </Border>
             <Border  Grid.Row="2" Grid.Column="0">
-                <RichTextBox  Name="StatsOfCharacter" BorderBrush="Black"  Background="#FF56CCCC"  />
+                <RichTextBox  Name="StatsOfCharacter" BorderBrush="Black"  Background="#FF56CCCC" FontSize="25"  />
             </Border>
             <Border  Grid.Row="3" Grid.Column="0">
-                <RichTextBox  Name="SkilsOfCharacter" BorderBrush="Black"  Background="GreenYellow" />
+                <RichTextBox  Name="SkilsOfCharacter" BorderBrush="Black"  Background="GreenYellow" FontSize="25"  />
             </Border>
         </Grid>
 

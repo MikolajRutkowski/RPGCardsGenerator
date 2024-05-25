@@ -25,6 +25,10 @@ namespace RPGCardsGenerator.Variables
 
 
         }
+        public Character()
+        {
+
+        }
 
     }
 }

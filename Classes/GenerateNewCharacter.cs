@@ -10,9 +10,12 @@ namespace RPGCardsGenerator.Classes
 {
     public class GenerateNewCharacter
     {
-        private List<Statistic> MainInfo;
-        private List<Statistic> Characteristics;
-        private List<Statistic> Skills;
+
+        //1 = Imie 2 = Imie gracza 3 = liczba Ex
+        public List<String> MainInfo;
+        public List<Statistic> Characteristics;
+        public List<Statistic> Skills;
+
 
 
 
@@ -20,8 +23,9 @@ namespace RPGCardsGenerator.Classes
         public GenerateNewCharacter(System.Windows.Controls.RichTextBox MainRichTextBox,
             System.Windows.Controls.RichTextBox CharacteristicsRichTextBox,
             System.Windows.Controls.RichTextBox SkillsRichTextBox) {
-
-         
+            MainInfo = GetLinesFromRichTextBox(MainRichTextBox);
+            Characteristics = FromStringToStatitic( GetLinesFromRichTextBox(CharacteristicsRichTextBox));
+            Skills = FromStringToStatitic(GetLinesFromRichTextBox(SkillsRichTextBox));
         }
 
         public bool Check()

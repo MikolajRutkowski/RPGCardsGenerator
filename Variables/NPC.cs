@@ -15,6 +15,10 @@ namespace RPGCardsGenerator.Variables
         {
            
         }
+        public NPC()
+        {
+
+        }
         public override List<string> ReturnMainInfo()
         {
             var returnList = new List<string>();
