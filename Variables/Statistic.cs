@@ -45,7 +45,7 @@ namespace RPGCardsGenerator.Variables
 
             if (spaceIndex == -1)
             {
-                // Jeśli nie ma spacji, zwróć cały string jako pierwszy element, a drugi będzie pusty
+                
                 return input;
             }
 

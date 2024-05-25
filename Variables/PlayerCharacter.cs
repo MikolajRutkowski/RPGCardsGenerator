@@ -8,6 +8,11 @@ namespace RPGCardsGenerator.Variables
         {
             this.NameOfPlayer = "Imie gracza postaci: " +  name;
         }
+        public PlayerCharacter()
+        {
+
+        }
+
 
         public string NameOfPlayer { get; set; } 
         public int Expiries { get; set; }

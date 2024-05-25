@@ -51,29 +51,46 @@ namespace RPGCardsGenerator
             MainInformationOfCharacter.EndChange();
         }
 
-       
+
 
         private void Add_New_Character(object sender, RoutedEventArgs e)
         {
-            GenerateNewCharacter newCharacter = new GenerateNewCharacter(MainInformationOfCharacter,StatsOfCharacter, SkilsOfCharacter);
-            List<string> nowa = new List<string>();
+            GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
+
             
-             nowa = newCharacter.GetLinesFromRichTextBox(StatsOfCharacter);
-            StatsOfCharacter.BeginChange();
-            StatsOfCharacter.Document.Blocks.Clear();
-            StatsOfCharacter.AppendText(nowa.First());
-            StatsOfCharacter.EndChange();
 
+            using (var dbContext = new BoardsContext())
+            {
+
+
+                PlayerCharacter NewCharacter = new PlayerCharacter()
+                {
+                    Name = charactorGenerator.MainInfo[1],
+                    NameOfPlayer = charactorGenerator.MainInfo[2],
+                    Expiries = int.Parse(charactorGenerator.MainInfo[3])
+
+                };  
+                dbContext.Characters.Add(NewCharacter);
+                dbContext.SaveChanges();
+               //int x =  dbContext.Characters.Last().Id;
+               // StatsOfCharacter.BeginChange();
+               // StatsOfCharacter.Document.Blocks.Clear();
+               // StatsOfCharacter.AppendText("Dodano nowego o id= " + x.ToString());
+               // StatsOfCharacter.EndChange();
+            }
+            
+
+
+            
         }
-
-        private void Random_Stats(object sender, RoutedEventArgs e)
+        void Random_Stats(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Chec_Stats(object sender, RoutedEventArgs e)
+        void Chec_Stats(object sender, RoutedEventArgs e)
         {
 
         }
-    }
+    } 
 }
