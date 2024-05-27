@@ -23,7 +23,7 @@ namespace RPGCardsGenerator.Classes
         public GenerateNewCharacter(System.Windows.Controls.RichTextBox MainRichTextBox,
             System.Windows.Controls.RichTextBox CharacteristicsRichTextBox,
             System.Windows.Controls.RichTextBox SkillsRichTextBox) {
-            MainInfo = GetLinesFromRichTextBox(MainRichTextBox);
+            MainInfo = GetLinesFromRichTextBox(MainRichTextBox);    
             Characteristics = FromStringToStatitic( GetLinesFromRichTextBox(CharacteristicsRichTextBox));
             Skills = FromStringToStatitic(GetLinesFromRichTextBox(SkillsRichTextBox));
         }

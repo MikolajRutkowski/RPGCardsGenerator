@@ -67,16 +67,26 @@ namespace RPGCardsGenerator
                 {
                     Name = charactorGenerator.MainInfo[1],
                     NameOfPlayer = charactorGenerator.MainInfo[2],
-                    Expiries = int.Parse(charactorGenerator.MainInfo[3])
+                  //  Expiries = int.Parse(charactorGenerator.MainInfo[3])
 
                 };  
-                dbContext.Characters.Add(NewCharacter);
+             //   dbContext.Characters.Add(NewCharacter);
                 dbContext.SaveChanges();
-               //int x =  dbContext.Characters.Last().Id;
-               // StatsOfCharacter.BeginChange();
-               // StatsOfCharacter.Document.Blocks.Clear();
-               // StatsOfCharacter.AppendText("Dodano nowego o id= " + x.ToString());
-               // StatsOfCharacter.EndChange();
+                var x = dbContext.PlayerCharacters.ToList();
+                int idOfNewCharacter = x.Last().Id;
+                foreach (Statistic item in charactorGenerator.Characteristics) // lista jest równa 0 
+                {
+                    item.CharaterId = idOfNewCharacter;
+                    dbContext.Statistics.Add(item);
+                }
+                foreach (Statistic item in charactorGenerator.Skills)
+                {
+                    item.CharaterId = idOfNewCharacter;
+                    dbContext.Statistics.Add(item);
+                }
+
+                dbContext.SaveChanges();
+
             }
             
 
