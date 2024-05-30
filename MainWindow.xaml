@@ -74,7 +74,14 @@
             </Border>
             
             <Border Background="LightGray" Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="Karta Postaci"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Karta Postaci" Grid.Column="0" />
+                    <Button Grid.Column="1" Background="#FFEC2727" Foreground="Black" > Usuń Postać </Button>
+                </Grid>
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
                 <ListBox Name="MainListBox" SelectionMode="Single" SelectionChanged="MainListBox_SelectionChanged"></ListBox>
