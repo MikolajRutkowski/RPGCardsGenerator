@@ -16,6 +16,13 @@
                 Executed="CommandBinding_NewCharacter"
                 />
     </Window.CommandBindings>
+    <Window.Resources>
+        
+        <ResourceDictionary>
+            <Color x:Key="PanelBackgroundColor">#FFEC2727</Color>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid x:Name="MainGrid">
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -66,7 +73,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Lista Postaci " Grid.Column="0"/>
-                    <Button Grid.Column="1" Click="NPCToCharacterAndBack" Name="NpcOrCharacterButton" >
+                    <Button Grid.Column="1" Click="NPCToCharacterAndBack" Name="NpcOrCharacterButton" Background="{DynamicResource ResourceKey=PanelBackgroundColor}" >
                         <TextBlock Name="NpcOrCharacterTextBlockTop" Text="NPC"></TextBlock>
                     </Button>
                 </Grid>
