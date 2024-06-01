@@ -16,12 +16,7 @@
                 Executed="CommandBinding_NewCharacter"
                 />
     </Window.CommandBindings>
-    <Window.Resources>
-        
-        <ResourceDictionary>
-            <Color x:Key="PanelBackgroundColor">#FFEC2727</Color>
-        </ResourceDictionary>
-    </Window.Resources>
+    
     
     <Grid x:Name="MainGrid">
         <DockPanel>
@@ -87,7 +82,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Karta Postaci" Grid.Column="0" />
-                    <Button Grid.Column="1" Background="#FFEC2727" Foreground="Black" > Usuń Postać </Button>
+                    <Button Grid.Column="1"  Foreground="Black" > Usuń Postać </Button>
                 </Grid>
             </Border>
             <Border Background="LightGray" Grid.Row="1" Grid.Column="0">
