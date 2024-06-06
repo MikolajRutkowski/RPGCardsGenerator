@@ -36,7 +36,7 @@ namespace RPGCardsGenerator.Classes
         {
             List<Statistic> stats = new List<Statistic>();
             foreach (string s in strings) { 
-            
+            stats.Add(new Statistic(s));
             }
             return stats;
         }

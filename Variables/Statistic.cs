@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace RPGCardsGenerator.Variables
 {
@@ -38,11 +39,23 @@ namespace RPGCardsGenerator.Variables
         {
             Name = Separate(false, NamePlusvalue);
             Value = int.Parse(Separate(true, NamePlusvalue));
+            int x = 0;
         }
         public string Separate(bool firstOrSecond, string input)
         {
-            int spaceIndex = input.IndexOf(' ');
+            int spaceIndex = -1;
+            
+            for (int i = 0;  i < input.Length; i++)
+            {
+                if (input[i] == ' ')
+                {
+                    spaceIndex = i;
+                    
+                }
+            }
 
+
+            
             if (spaceIndex == -1)
             {
                 

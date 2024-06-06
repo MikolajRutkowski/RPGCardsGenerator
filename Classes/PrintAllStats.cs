@@ -3,10 +3,12 @@ using RPGCardsGenerator.Interfaces;
 using RPGCardsGenerator.Variables;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace RPGCardsGenerator.Classes
 {
@@ -88,10 +90,13 @@ namespace RPGCardsGenerator.Classes
 
         public PrintAllStats(string longstinrg)
         {
+            
             int id = SepareteIdFromIdAndName(longstinrg);
             CharacterTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.characteristic));
             MainTable = ReturnTableForRichTextBox(MadeMainTable(id),4,1);
-            SkilTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.skill));
+            SkilTable = ReturnTableForRichTextBox(ReturnListOfStatistic(id, TypeOfCariables.skill),3,15);
+            MainTable.BorderThickness = new System.Windows.Thickness(1);
+            MainTable.BorderBrush= System.Windows.Media.Brushes.Black;
         }
         public PrintAllStats(int id)
         {
