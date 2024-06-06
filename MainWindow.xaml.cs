@@ -51,13 +51,13 @@ namespace RPGCardsGenerator
         {
             if(MainListBox.SelectedItem != null)
             {
-                string x = MainListBox.SelectedItem.ToString(); //MainListBox.SelectedIndex.ToString();
-                                                              //StatsOfCharacter.AppendText(Cotokurwajest);
+                string IdPlusName = MainListBox.SelectedItem.ToString(); 
+                                                              
                 StatsOfCharacter.BeginChange();
                 StatsOfCharacter.Document.Blocks.Clear();
-                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).MainTable);
-                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).CharacterTable);
-                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(x).SkilTable);
+                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(IdPlusName).MainTable);
+                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(IdPlusName).CharacterTable);
+                StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(IdPlusName).SkilTable);
                 StatsOfCharacter.EndChange();
             }
         }
@@ -93,7 +93,7 @@ namespace RPGCardsGenerator
         {
              App.Current.Shutdown();
           // var list =  GetLinesFromRichTextBox(StatsOfCharacter);
-            //int x = 0 ;
+            //int IdPlusName = 0 ;
         }
 
         private void CommandBinding_NewCharacter(object sender, ExecutedRoutedEventArgs e)

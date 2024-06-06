@@ -70,7 +70,7 @@ namespace RPGCardsGenerator
                   //  Expiries = int.Parse(charactorGenerator.MainInfo[3])
 
                 };  
-             //   dbContext.Characters.Add(NewCharacter);
+                dbContext.Characters.Add(NewCharacter);
                 dbContext.SaveChanges();
                 var x = dbContext.PlayerCharacters.ToList();
                 int idOfNewCharacter = x.Last().Id;
@@ -82,6 +82,7 @@ namespace RPGCardsGenerator
                 foreach (Statistic item in charactorGenerator.Skills)
                 {
                     item.CharaterId = idOfNewCharacter;
+                    item.Type = TypeOfCariables.skill;
                     dbContext.Statistics.Add(item);
                 }
 

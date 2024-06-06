@@ -18,6 +18,9 @@
         <Setter Property="Background" Value="{StaticResource DarkGreenBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightTextBrush}" />
     </Style>
+    <Style TargetType="RowDefinition">
+        <Setter Property="MinHeight" Value="30" />
+    </Style>
 
     <!-- Style dla przycisków -->
     <Style TargetType="Button">
