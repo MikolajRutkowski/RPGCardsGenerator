@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace RPGCardsGenerator.Classes
 {
-    public static class AddSkils
+    public  class AddSkils
+
     {
-        public static int rollDice(int k = 6)
+        public List<Statistic> BaseCharacteristic;
+        public List<Statistic> BaseSkils;
+        public  int rollDice(int k = 6)
         {
             int results = new Random().Next(1, k + 1);
             return results;
         }
 
-        public readonly static List<string> BaseCharacteristicName = new List<string>
+        public readonly  List<string> BaseCharacteristicName = new List<string>
         {
            "Siła", // 3k6     
            "Kondycja ", // 3k6
@@ -28,9 +31,9 @@ namespace RPGCardsGenerator.Classes
            "Budowa Ciała",  //2k6 + 6
            "Ruch"
         };
-
-        public static List<Statistic> BaseCharacteristic = new List<Statistic>
-        {
+        public AddSkils() {
+            BaseCharacteristic = new List<Statistic>
+            {
            new Statistic("Siła",TypeOfCariables.characteristic,"",rollDice(),rollDice(),rollDice()),
            new Statistic("Kondycja", TypeOfCariables.characteristic, "",rollDice(),rollDice(),rollDice()),
            new Statistic("Moc", TypeOfCariables.characteristic, "",rollDice(),rollDice(),rollDice()),
@@ -41,9 +44,8 @@ namespace RPGCardsGenerator.Classes
            new Statistic("Budowa Ciała", TypeOfCariables.characteristic, "", 6,rollDice(),rollDice()),
            new Statistic("Ruch", TypeOfCariables.characteristic, "", 7)
 
-        };
-
-        public static List<Statistic> BaseSkils = new List<Statistic>
+            };
+            BaseSkils = new List<Statistic>
         {
             new Statistic("Antropologia", TypeOfCariables.skill, "", rollDice(20), 1),
             new Statistic("Archeologia", TypeOfCariables.skill, "", rollDice(20), 1),
@@ -89,8 +91,15 @@ namespace RPGCardsGenerator.Classes
             new Statistic("Świat naturalny", TypeOfCariables.skill, "", rollDice(20), 1)
         };
 
+        }
 
-        public readonly static List<string> BaseSkilsName = new List<string>
+
+
+
+        
+
+
+        public readonly  List<string> BaseSkilsName = new List<string>
         {
            "Antropologia",
             "Archeologia",
@@ -136,7 +145,7 @@ namespace RPGCardsGenerator.Classes
             "Świat naturalny"
         };
 
-        public static List<string> MakeLitOfstring(List<Statistic> baseList)
+        public  List<string> MakeLitOfstring(List<Statistic> baseList)
         {
             List<string> result = new List<string>();
             for (int i = 0; i < baseList.Count; i++)
@@ -147,7 +156,7 @@ namespace RPGCardsGenerator.Classes
             return result;
         }
 
-        public static bool MakeBase(int SuspectId, List<Statistic> BaseList)
+        public  bool MakeBase(int SuspectId, List<Statistic> BaseList)
         {
             using (var dbContext = new BoardsContext())
             {
