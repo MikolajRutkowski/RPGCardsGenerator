@@ -86,8 +86,9 @@ namespace RPGCardsGenerator
         }
         void AddAllTablesInNewCharacterWindow(bool randomStats )
         {
-            List<Statistic> BaseListOfSkils = AddSkils.BaseSkils;
-            List<Statistic> BaseListOfCharacter = AddSkils.BaseCharacteristic;
+            AddSkils AddNewCharacterGenerator = new AddSkils();
+            List<Statistic> BaseListOfSkils = AddNewCharacterGenerator.BaseSkils;
+            List<Statistic> BaseListOfCharacter = AddNewCharacterGenerator.BaseCharacteristic;
             foreach (Statistic statistic in BaseListOfSkils)
             {
                 statistic.Value = SetRandomStats(randomStats ,statistic);
@@ -117,9 +118,10 @@ namespace RPGCardsGenerator
             if (!random) {
                 return 1;
             }
-            
+            AddSkils AddNewCharacterGenerator = new AddSkils();
+
             if (stat != null) {
-                foreach( Statistic BaseSkil in AddSkils.BaseCharacteristic)
+                foreach( Statistic BaseSkil in AddNewCharacterGenerator.BaseCharacteristic)
                 {
                     if (BaseSkil.Name == stat.Name) 
                     {
@@ -127,7 +129,7 @@ namespace RPGCardsGenerator
                         return randomvalue;
                     }
                 }
-                foreach (Statistic BaseSkil in AddSkils.BaseSkils)
+                foreach (Statistic BaseSkil in AddNewCharacterGenerator.BaseSkils)
                 {
                     if (BaseSkil.Name == stat.Name)
                     {
