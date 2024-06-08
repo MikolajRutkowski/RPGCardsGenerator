@@ -27,28 +27,7 @@ namespace RPGCardsGenerator
         public NewCharacterWindow()
         {
             InitializeComponent();
-            List<Statistic> BaseListOfSkils = AddSkils.BaseSkils;
-            List<Statistic> BaseListOfCharacter = AddSkils.BaseCharacteristic;
-            foreach (Statistic statistic in BaseListOfSkils)
-            {
-                statistic.Value = 0;
-            }
-            foreach (Statistic statistic in BaseListOfCharacter)
-            {
-                statistic.Value = 1;
-            }
-            StatsOfCharacter.BeginChange();
-            StatsOfCharacter.Document.Blocks.Clear();
-            StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfCharacter).SkilTable);
-            StatsOfCharacter.EndChange();
-            SkilsOfCharacter.BeginChange();
-            SkilsOfCharacter.Document.Blocks.Clear();
-            SkilsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfSkils).SkilTable);
-            SkilsOfCharacter.EndChange();
-            MainInformationOfCharacter.BeginChange();
-            MainInformationOfCharacter.Document.Blocks.Clear();
-            MainInformationOfCharacter.Document.Blocks.Add(new PrintAllStats(IdOfExaple).MainTable);
-            MainInformationOfCharacter.EndChange();
+            AddAllTablesInNewCharacterWindow(false);
         }
 
 
@@ -94,14 +73,71 @@ namespace RPGCardsGenerator
 
             
         }
+
         void Random_Stats(object sender, RoutedEventArgs e)
         {
 
+            AddAllTablesInNewCharacterWindow(true);
         }
 
         void Chec_Stats(object sender, RoutedEventArgs e)
         {
 
+        }
+        void AddAllTablesInNewCharacterWindow(bool randomStats )
+        {
+            List<Statistic> BaseListOfSkils = AddSkils.BaseSkils;
+            List<Statistic> BaseListOfCharacter = AddSkils.BaseCharacteristic;
+            foreach (Statistic statistic in BaseListOfSkils)
+            {
+                statistic.Value = SetRandomStats(randomStats ,statistic);
+            }
+            foreach (Statistic statistic in BaseListOfCharacter)
+            {
+                statistic.Value = SetRandomStats(randomStats, statistic);
+            }
+            StatsOfCharacter.BeginChange();
+            StatsOfCharacter.Document.Blocks.Clear();
+            StatsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfCharacter).SkilTable);
+            StatsOfCharacter.EndChange();
+            SkilsOfCharacter.BeginChange();
+            SkilsOfCharacter.Document.Blocks.Clear();
+            SkilsOfCharacter.Document.Blocks.Add(new PrintAllStats(BaseListOfSkils).SkilTable);
+            SkilsOfCharacter.EndChange();
+            MainInformationOfCharacter.BeginChange();
+            MainInformationOfCharacter.Document.Blocks.Clear();
+            MainInformationOfCharacter.Document.Blocks.Add(new PrintAllStats(IdOfExaple).MainTable);
+            MainInformationOfCharacter.EndChange();
+        }
+
+        
+        private int SetRandomStats(bool random = true, Statistic stat = null)
+        {
+            int randomvalue = 0;
+            if (!random) {
+                return 1;
+            }
+            
+            if (stat != null) {
+                foreach( Statistic BaseSkil in AddSkils.BaseCharacteristic)
+                {
+                    if (BaseSkil.Name == stat.Name) 
+                    {
+                        randomvalue = BaseSkil.Value;
+                        return randomvalue;
+                    }
+                }
+                foreach (Statistic BaseSkil in AddSkils.BaseSkils)
+                {
+                    if (BaseSkil.Name == stat.Name)
+                    {
+                        randomvalue = BaseSkil.Value;
+                        return randomvalue;
+                    }
+                }
+            }
+
+            return randomvalue;
         }
     } 
 }
