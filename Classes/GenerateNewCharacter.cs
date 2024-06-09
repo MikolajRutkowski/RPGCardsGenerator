@@ -28,10 +28,7 @@ namespace RPGCardsGenerator.Classes
             Skills = FromStringToStatitic(GetLinesFromRichTextBox(SkillsRichTextBox));
         }
 
-        public bool Check()
-        {
-            return true;
-        }
+        
         public List<Statistic> FromStringToStatitic(List<string> strings)
         {
             List<Statistic> stats = new List<Statistic>();
@@ -53,9 +50,7 @@ namespace RPGCardsGenerator.Classes
             return lines;
         }
 
-        public bool AddToDataBase() { 
-            
-            return true; }
+        
 
     }
 }
