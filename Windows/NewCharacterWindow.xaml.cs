@@ -34,44 +34,40 @@ namespace RPGCardsGenerator
 
         private void Add_New_Character(object sender, RoutedEventArgs e)
         {
-            GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
-
-            
-
-            using (var dbContext = new BoardsContext())
+            if (CheckAllFilds())
             {
-
-
-                PlayerCharacter NewCharacter = new PlayerCharacter()
+                GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
+                using (var dbContext = new BoardsContext())
                 {
-                    Name = charactorGenerator.MainInfo[1],
-                    NameOfPlayer = charactorGenerator.MainInfo[2],
-                  //  Expiries = int.Parse(charactorGenerator.MainInfo[3])
 
-                };  
-                dbContext.Characters.Add(NewCharacter);
-                dbContext.SaveChanges();
-                var x = dbContext.PlayerCharacters.ToList();
-                int idOfNewCharacter = x.Last().Id;
-                foreach (Statistic item in charactorGenerator.Characteristics) // lista jest równa 0 
-                {
-                    item.CharaterId = idOfNewCharacter;
-                    dbContext.Statistics.Add(item);
+
+                    PlayerCharacter NewCharacter = new PlayerCharacter()
+                    {
+                        Name = charactorGenerator.MainInfo[1],
+                        NameOfPlayer = charactorGenerator.MainInfo[2],
+                        //  Expiries = int.Parse(charactorGenerator.MainInfo[3])
+
+                    };
+                    dbContext.Characters.Add(NewCharacter);
+                    dbContext.SaveChanges();
+                    var x = dbContext.PlayerCharacters.ToList();
+                    int idOfNewCharacter = x.Last().Id;
+                    foreach (Statistic item in charactorGenerator.Characteristics) // lista jest równa 0 
+                    {
+                        item.CharaterId = idOfNewCharacter;
+                        dbContext.Statistics.Add(item);
+                    }
+                    foreach (Statistic item in charactorGenerator.Skills)
+                    {
+                        item.CharaterId = idOfNewCharacter;
+                        item.Type = TypeOfCariables.skill;
+                        dbContext.Statistics.Add(item);
+                    }
+
+                    dbContext.SaveChanges();
+
                 }
-                foreach (Statistic item in charactorGenerator.Skills)
-                {
-                    item.CharaterId = idOfNewCharacter;
-                    item.Type = TypeOfCariables.skill;
-                    dbContext.Statistics.Add(item);
-                }
-
-                dbContext.SaveChanges();
-
             }
-            
-
-
-            
         }
 
         void Random_Stats(object sender, RoutedEventArgs e)
@@ -82,8 +78,25 @@ namespace RPGCardsGenerator
 
         void Chec_Stats(object sender, RoutedEventArgs e)
         {
+            CheckAllFilds();
+        }
+        private bool CheckAllFilds()
+        {
+            bool returnBool = true;
+            GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
+
+            
+            List<String> listOfStats =  charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
+            List<String> listOfSkils = charactorGenerator.GetLinesFromRichTextBox(SkilsOfCharacter);
+
+            return returnBool;
+        }
+
+        void MakeCellRed(string badString, RichTextBox richTextBox)
+        {
 
         }
+
         void AddAllTablesInNewCharacterWindow(bool randomStats )
         {
             AddSkils AddNewCharacterGenerator = new AddSkils();
