@@ -1,18 +1,11 @@
 ﻿using RPGCardsGenerator.Classes;
 using RPGCardsGenerator.Variables;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
+using System.Windows.Forms;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace RPGCardsGenerator
 {
@@ -88,13 +81,77 @@ namespace RPGCardsGenerator
             
             List<String> listOfStats =  charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
             List<String> listOfSkils = charactorGenerator.GetLinesFromRichTextBox(SkilsOfCharacter);
+            AddSkils addSkils = new AddSkils();
+            List<string> coretStats = addSkils.BaseCharacteristicName;
+            List<string> coretSkills = addSkils.BaseSkilsName;
+            foreach (String line in listOfStats) {
+                IsInList(line)
+
+
+            }
+
+
 
             return returnBool;
         }
 
-        void MakeCellRed(string badString, RichTextBox richTextBox)
+        bool IsInList(string x, List<string> list)
         {
+            foreach (String line in list)
+            {
+                if(line == x) return true;
+            }
+            return false;
+        }
 
+        void MakeCellCollor(string badString, System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush colorBrush )
+        {
+            if (string.IsNullOrEmpty(badString) || richTextBox == null)
+            {
+                return;
+            }
+
+            // Pobierz cały tekst z RichTextBox
+            TextRange textRange = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+
+            // Ustawienia domyślne dla wyszukiwania
+            TextPointer currentPointer = textRange.Start;
+            while (currentPointer != null && currentPointer.CompareTo(textRange.End) < 0)
+            {
+                // Znajdź pierwszy ciąg znaków odpowiadający badString
+                TextRange foundRange = FindTextInRange(currentPointer, textRange.End, badString);
+                if (foundRange == null)
+                {
+                    break; // Jeżeli nie znaleziono, przerwij pętlę
+                }
+
+                // Ustaw kolor tła na czerwony dla znalezionego zakresu
+                foundRange.ApplyPropertyValue(TextElement.BackgroundProperty, colorBrush);
+
+                // Przejdź do końca znalezionego zakresu, aby kontynuować wyszukiwanie
+                currentPointer = foundRange.End;
+            }
+        }
+        private TextRange FindTextInRange(TextPointer start, TextPointer end, string text)
+        {
+            while (start != null && start.CompareTo(end) < 0)
+            {
+                if (start.GetPointerContext(LogicalDirection.Forward) == TextPointerContext.Text)
+                {
+                    string textRun = start.GetTextInRun(LogicalDirection.Forward);
+
+                    // Znajdź indeks badString w textRun
+                    int indexInRun = textRun.IndexOf(text);
+                    if (indexInRun != -1)
+                    {
+                        TextPointer startPos = start.GetPositionAtOffset(indexInRun);
+                        TextPointer endPos = startPos.GetPositionAtOffset(text.Length);
+                        return new TextRange(startPos, endPos);
+                    }
+                }
+                start = start.GetNextContextPosition(LogicalDirection.Forward);
+            }
+            return null;
         }
 
         void AddAllTablesInNewCharacterWindow(bool randomStats )

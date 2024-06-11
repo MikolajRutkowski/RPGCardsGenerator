@@ -71,8 +71,8 @@
             <Border  Grid.Row="1" Grid.Column="0" >
                 <RichTextBox  Name="MainInformationOfCharacter" FontSize="25"  />
             </Border>
-            <Border  Grid.Row="2" Grid.Column="0">
-                <RichTextBox  Name="StatsOfCharacter"  FontSize="25"  />
+            <Border  Grid.Row="2" Grid.Column="0" >
+                <RichTextBox  Name="StatsOfCharacter"  FontSize="25" Height="200"  />
             </Border>
             <Border  Grid.Row="3" Grid.Column="0">
                 <RichTextBox  Name="SkilsOfCharacter"  FontSize="25"  />
