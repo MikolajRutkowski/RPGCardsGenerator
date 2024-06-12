@@ -84,8 +84,14 @@ namespace RPGCardsGenerator
             AddSkils addSkils = new AddSkils();
             List<string> coretStats = addSkils.BaseCharacteristicName;
             List<string> coretSkills = addSkils.BaseSkilsName;
+            CheckIscorretStats(listOfStats, SkilsOfCharacter);
             foreach (String line in listOfStats) {
-                IsInList(line)
+                
+               if (IsInList(line, coretStats))
+                {
+
+                   // MakeCellCollor(line, SkilsOfCharacter, Brushes.Yellow);
+                }
 
 
             }
@@ -93,6 +99,29 @@ namespace RPGCardsGenerator
 
 
             return returnBool;
+        }
+        void CheckIscorretStats( List<String> list, System.Windows.Controls.RichTextBox richTextBox)
+        {
+            foreach (String line in list)
+            {
+                if (!IsOnlyOneSpace(line)) {
+                    MakeCellCollor(line, richTextBox, Brushes.Red);
+                
+                }
+            }
+        }
+        bool IsOnlyOneSpace(string x)
+        {
+            int spaceIndex = 0;
+            foreach(char character in x)
+            {
+                if(character == ' ') spaceIndex++;
+            }
+            if (spaceIndex == 1)
+            {
+                return true;
+            }
+            return false;
         }
 
         bool IsInList(string x, List<string> list)
