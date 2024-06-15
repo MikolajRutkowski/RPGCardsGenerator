@@ -76,7 +76,8 @@ namespace RPGCardsGenerator
 
         void Chec_Stats(object sender, RoutedEventArgs e)
         {
-            CheckAllFilds();
+            CheckAllFilds(); //git status
+
         }
 
 
