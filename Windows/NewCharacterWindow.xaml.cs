@@ -19,6 +19,7 @@ namespace RPGCardsGenerator
         private SolidColorBrush Red = Brushes.Red;
         private SolidColorBrush Green = Brushes.Green;
         private SolidColorBrush Yellow = Brushes.Yellow;
+        private bool isOk = false;
 
         public NewCharacterWindow()
         {
@@ -30,7 +31,8 @@ namespace RPGCardsGenerator
 
         private void Add_New_Character(object sender, RoutedEventArgs e)
         {
-            if (CheckAllFilds())
+            CheckAllFilds();
+            if (isOk)
             {
                 GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
                 using (var dbContext = new BoardsContext())
@@ -86,12 +88,12 @@ namespace RPGCardsGenerator
             bool returnBool = true;
             
 
-            GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
-       ////     List<string> x = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
-       //     foreach ( string y  in x){ 
-       //     if( y == "Siła 1")
-       //     MakeCellCollor(y, StatsOfCharacter, Brushes.Red);
-       //     }
+            GenerateNewCharacter charactorGenerator = new GenerateNewCharacter();
+            List<string> x = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
+            foreach ( string y  in x){ 
+            if( y == "Siła 1")
+            MakeCellCollor(y, StatsOfCharacter, Brushes.Red);
+            }
             //List<String> listOfStats =  charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
             //List<String> listOfSkils = charactorGenerator.GetLinesFromRichTextBox(SkilsOfCharacter);
             //AddSkils addSkils = new AddSkils();
