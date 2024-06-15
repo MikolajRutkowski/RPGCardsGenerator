@@ -18,7 +18,10 @@ namespace RPGCardsGenerator.Classes
 
 
 
+        public GenerateNewCharacter()
+        {
 
+        }
         public GenerateNewCharacter(List<string> list) { }
         public GenerateNewCharacter(System.Windows.Controls.RichTextBox MainRichTextBox,
             System.Windows.Controls.RichTextBox CharacteristicsRichTextBox,
