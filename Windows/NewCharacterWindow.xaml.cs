@@ -16,6 +16,9 @@ namespace RPGCardsGenerator
     {
         private int IdOfExaple = 1005;
 
+        private SolidColorBrush Red = Brushes.Red;
+        private SolidColorBrush Green = Brushes.Green;
+        private SolidColorBrush Yellow = Brushes.Yellow;
 
         public NewCharacterWindow()
         {
@@ -73,28 +76,38 @@ namespace RPGCardsGenerator
         {
             CheckAllFilds();
         }
+
+
         private bool CheckAllFilds()
         {
+
+
+
             bool returnBool = true;
-            GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
-
             
-            List<String> listOfStats =  charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
-            List<String> listOfSkils = charactorGenerator.GetLinesFromRichTextBox(SkilsOfCharacter);
-            AddSkils addSkils = new AddSkils();
-            List<string> coretStats = addSkils.BaseCharacteristicName;
-            List<string> coretSkills = addSkils.BaseSkilsName;
-            CheckIscorretStats(listOfStats, SkilsOfCharacter);
-            foreach (String line in listOfStats) {
-                
-               if (IsInList(line, coretStats))
-                {
 
-                   // MakeCellCollor(line, SkilsOfCharacter, Brushes.Yellow);
-                }
+            GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
+       ////     List<string> x = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
+       //     foreach ( string y  in x){ 
+       //     if( y == "Siła 1")
+       //     MakeCellCollor(y, StatsOfCharacter, Brushes.Red);
+       //     }
+            //List<String> listOfStats =  charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
+            //List<String> listOfSkils = charactorGenerator.GetLinesFromRichTextBox(SkilsOfCharacter);
+            //AddSkils addSkils = new AddSkils();
+            //List<string> coretStats = addSkils.BaseCharacteristicName;
+            //List<string> coretSkills = addSkils.BaseSkilsName;
+            //CheckIscorretStats(listOfStats, SkilsOfCharacter);
+            //foreach (String line in listOfStats) {
+
+            //   if (IsInList(line, coretStats))
+            //    {
+
+            //       // MakeCellCollor(line, SkilsOfCharacter, Brushes.Yellow);
+            //    }
 
 
-            }
+            //}
 
 
 
