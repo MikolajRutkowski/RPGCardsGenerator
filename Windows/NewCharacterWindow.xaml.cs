@@ -87,14 +87,20 @@ namespace RPGCardsGenerator
 
 
             bool returnBool = true;
-            
+
 
             GenerateNewCharacter charactorGenerator = new GenerateNewCharacter();
-            List<string> x = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
-            foreach ( string y  in x){ 
-            if( y == "Siła 1")
-            MakeCellCollor(y, StatsOfCharacter, Brushes.Red);
+
+            List<string> StatsOfCharacterListOfString = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
+            foreach (string str in StatsOfCharacterListOfString) {
+                if (!ChcekIsOnlyOne(str, StatsOfCharacterListOfString)) {
+
+                }
             }
+
+            CheckIsAbleToAddThsTableToCharacter(StatsOfCharacterListOfString, StatsOfCharacter);
+            AddCellBorders(SkilsOfCharacter, Yellow, 1);
+
             //List<String> listOfStats =  charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
             //List<String> listOfSkils = charactorGenerator.GetLinesFromRichTextBox(SkilsOfCharacter);
             //AddSkils addSkils = new AddSkils();
@@ -116,22 +122,60 @@ namespace RPGCardsGenerator
 
             return returnBool;
         }
-        void CheckIscorretStats( List<String> list, System.Windows.Controls.RichTextBox richTextBox)
+        public void AddCellBorders(System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush borderBrush, double borderThickness)
         {
+            // Ensure the RichTextBox has a FlowDocument
+            if (richTextBox.Document == null)
+                return;
+
+            // Loop through all blocks in the FlowDocument
+            foreach (Block block in richTextBox.Document.Blocks)
+            {
+                // Only process Table elements
+                if (block is Table table)
+                {
+                    foreach (TableRowGroup rowGroup in table.RowGroups)
+                    {
+                        foreach (TableRow row in rowGroup.Rows)
+                        {
+                            foreach (TableCell cell in row.Cells)
+                            {
+                                // Set the border properties for the cell
+                                cell.BorderBrush = borderBrush;
+                                cell.BorderThickness = new Thickness(borderThickness);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        bool ChcekIsOnlyOne(string x, List<string> list)
+        {
+            foreach (string s in list) {
+                if (s == x) { return false; }
+
+            }
+            return true;
+        }
+        bool CheckIsAbleToAddThsTableToCharacter(List<String> list, System.Windows.Controls.RichTextBox richTextBox)
+        {
+
+            bool returnValue = true;
             foreach (String line in list)
             {
                 if (!IsOnlyOneSpace(line)) {
-                    MakeCellCollor(line, richTextBox, Brushes.Red);
-                
+                    MakeCellColor2(line, richTextBox, Brushes.Red);
+                    returnValue = false;
                 }
             }
+            return returnValue;
         }
         bool IsOnlyOneSpace(string x)
         {
             int spaceIndex = 0;
-            foreach(char character in x)
+            foreach (char character in x)
             {
-                if(character == ' ') spaceIndex++;
+                if (character == ' ') spaceIndex++;
             }
             if (spaceIndex == 1)
             {
@@ -144,60 +188,46 @@ namespace RPGCardsGenerator
         {
             foreach (String line in list)
             {
-                if(line == x) return true;
+                if (line == x) return true;
             }
             return false;
         }
 
-        void MakeCellCollor(string badString, System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush colorBrush )
+        public void MakeCellColor2(string badString, System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush colorBrush)
         {
-            if (string.IsNullOrEmpty(badString) || richTextBox == null)
-            {
+            // Ensure the RichTextBox has a FlowDocument
+            if (richTextBox.Document == null)
                 return;
-            }
 
-            // Pobierz cały tekst z RichTextBox
-            TextRange textRange = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
-
-            // Ustawienia domyślne dla wyszukiwania
-            TextPointer currentPointer = textRange.Start;
-            while (currentPointer != null && currentPointer.CompareTo(textRange.End) < 0)
+            // Loop through all blocks in the FlowDocument
+            foreach (Block block in richTextBox.Document.Blocks)
             {
-                // Znajdź pierwszy ciąg znaków odpowiadający badString
-                TextRange foundRange = FindTextInRange(currentPointer, textRange.End, badString);
-                if (foundRange == null)
+                // Only process Table elements
+                if (block is Table table)
                 {
-                    break; // Jeżeli nie znaleziono, przerwij pętlę
-                }
-
-                // Ustaw kolor tła na czerwony dla znalezionego zakresu
-                foundRange.ApplyPropertyValue(TextElement.BackgroundProperty, colorBrush);
-
-                // Przejdź do końca znalezionego zakresu, aby kontynuować wyszukiwanie
-                currentPointer = foundRange.End;
-            }
-        }
-        private TextRange FindTextInRange(TextPointer start, TextPointer end, string text)
-        {
-            while (start != null && start.CompareTo(end) < 0)
-            {
-                if (start.GetPointerContext(LogicalDirection.Forward) == TextPointerContext.Text)
-                {
-                    string textRun = start.GetTextInRun(LogicalDirection.Forward);
-
-                    // Znajdź indeks badString w textRun
-                    int indexInRun = textRun.IndexOf(text);
-                    if (indexInRun != -1)
+                    foreach (TableRowGroup rowGroup in table.RowGroups)
                     {
-                        TextPointer startPos = start.GetPositionAtOffset(indexInRun);
-                        TextPointer endPos = startPos.GetPositionAtOffset(text.Length);
-                        return new TextRange(startPos, endPos);
+                        foreach (TableRow row in rowGroup.Rows)
+                        {
+                            foreach (TableCell cell in row.Cells)
+                            {
+                                // Get the text content of the cell
+                                string cellText = new TextRange(cell.ContentStart, cell.ContentEnd).Text.Trim();
+
+                                // Check if the cell text matches the badString exactly
+                                if (cellText == badString)
+                                {
+                                    // Change the background color of the cell
+                                    cell.Background = colorBrush;
+                                }
+                            }
+                        }
                     }
                 }
-                start = start.GetNextContextPosition(LogicalDirection.Forward);
             }
-            return null;
         }
+    
+
 
         void AddAllTablesInNewCharacterWindow(bool randomStats )
         {
