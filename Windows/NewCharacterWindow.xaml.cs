@@ -31,6 +31,9 @@ namespace RPGCardsGenerator
 
         private void Add_New_Character(object sender, RoutedEventArgs e)
         {
+            AddCellBorders(MainInformationOfCharacter, Yellow, 1);
+            AddCellBorders(SkilsOfCharacter, Yellow, 1);
+            AddCellBorders(StatsOfCharacter, Yellow, 1);
             CheckAllFilds();
             if (isOk)
             {
@@ -84,8 +87,6 @@ namespace RPGCardsGenerator
         private bool CheckAllFilds()
         {
 
-
-
             bool returnBool = true;
 
 
@@ -94,29 +95,14 @@ namespace RPGCardsGenerator
             List<string> StatsOfCharacterListOfString = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
             foreach (string str in StatsOfCharacterListOfString) {
                 if (!ChcekIsOnlyOne(str, StatsOfCharacterListOfString)) {
-
+                    
                 }
             }
 
             CheckIsAbleToAddThsTableToCharacter(StatsOfCharacterListOfString, StatsOfCharacter);
-            AddCellBorders(SkilsOfCharacter, Yellow, 1);
+            
 
-            //List<String> listOfStats =  charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
-            //List<String> listOfSkils = charactorGenerator.GetLinesFromRichTextBox(SkilsOfCharacter);
-            //AddSkils addSkils = new AddSkils();
-            //List<string> coretStats = addSkils.BaseCharacteristicName;
-            //List<string> coretSkills = addSkils.BaseSkilsName;
-            //CheckIscorretStats(listOfStats, SkilsOfCharacter);
-            //foreach (String line in listOfStats) {
-
-            //   if (IsInList(line, coretStats))
-            //    {
-
-            //       // MakeCellCollor(line, SkilsOfCharacter, Brushes.Yellow);
-            //    }
-
-
-            //}
+            
 
 
 
@@ -157,19 +143,6 @@ namespace RPGCardsGenerator
             }
             return true;
         }
-        bool CheckIsAbleToAddThsTableToCharacter(List<String> list, System.Windows.Controls.RichTextBox richTextBox)
-        {
-
-            bool returnValue = true;
-            foreach (String line in list)
-            {
-                if (!IsOnlyOneSpace(line)) {
-                    MakeCellColor2(line, richTextBox, Brushes.Red);
-                    returnValue = false;
-                }
-            }
-            return returnValue;
-        }
         bool IsOnlyOneSpace(string x)
         {
             int spaceIndex = 0;
@@ -184,16 +157,7 @@ namespace RPGCardsGenerator
             return false;
         }
 
-        bool IsInList(string x, List<string> list)
-        {
-            foreach (String line in list)
-            {
-                if (line == x) return true;
-            }
-            return false;
-        }
-
-        public void MakeCellColor2(string badString, System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush colorBrush)
+        public void MakeCellColor(string badString, System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush colorBrush)
         {
             // Ensure the RichTextBox has a FlowDocument
             if (richTextBox.Document == null)
@@ -226,8 +190,8 @@ namespace RPGCardsGenerator
                 }
             }
         }
-    
 
+        #region SetRandomStats
 
         void AddAllTablesInNewCharacterWindow(bool randomStats )
         {
@@ -286,5 +250,7 @@ namespace RPGCardsGenerator
 
             return randomvalue;
         }
-    } 
+
+        #endregion
+    }
 }
