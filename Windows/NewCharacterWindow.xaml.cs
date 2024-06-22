@@ -98,8 +98,8 @@ namespace RPGCardsGenerator
                     
                 }
             }
-
-            CheckIsAbleToAddThsTableToCharacter(StatsOfCharacterListOfString, StatsOfCharacter);
+            
+            
             
 
             
@@ -143,19 +143,29 @@ namespace RPGCardsGenerator
             }
             return true;
         }
-        bool IsOnlyOneSpace(string x)
+        bool IsEmptyAfterInt(string x)
         {
-            int spaceIndex = 0;
-            foreach (char character in x)
-            {
-                if (character == ' ') spaceIndex++;
-            }
-            if (spaceIndex == 1)
-            {
-                return true;
-            }
-            return false;
+            int lastInt = FindLastIntId(x);
+            if(lastInt == )
+            return true;
         }
+        int FindLastIntId(string x) { 
+           int returnInt = 0;
+            int counter = 0;
+            List<char> list = new List<char> {
+            '0','1','2','3','4','5','6','7','8','9'
+
+            };
+            foreach(char c in x)
+            {
+                foreach (char s in list) { 
+                if(s==c) { returnInt = counter;  }
+                }
+                counter++;
+            }
+
+            return returnInt;
+        } 
 
         public void MakeCellColor(string badString, System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush colorBrush)
         {
