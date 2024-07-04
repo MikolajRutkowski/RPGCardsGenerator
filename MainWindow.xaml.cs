@@ -92,7 +92,7 @@ namespace RPGCardsGenerator
         private void CommandBinding_Exit(object sender, ExecutedRoutedEventArgs e)
         {
              App.Current.Shutdown();
-          // var list =  GetLinesFromRichTextBox(StatsOfCharacter);
+          // var listOfNumber =  GetLinesFromRichTextBox(StatsOfCharacter);
             //int IdPlusName = 0 ;
         }
 
