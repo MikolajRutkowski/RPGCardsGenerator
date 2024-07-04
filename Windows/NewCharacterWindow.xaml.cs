@@ -15,10 +15,15 @@ namespace RPGCardsGenerator
     public partial class NewCharacterWindow : Window
     {
         private int IdOfExaple = 1005;
+        List<char> listOfNumber = new List<char> {
+            '0','1','2','3','4','5','6','7','8','9'
+
+            };
 
         private SolidColorBrush Red = Brushes.Red;
         private SolidColorBrush Green = Brushes.Green;
         private SolidColorBrush Yellow = Brushes.Yellow;
+        private SolidColorBrush LightPink = Brushes.LightPink;
         private bool isOk = false;
 
         public NewCharacterWindow()
@@ -95,7 +100,13 @@ namespace RPGCardsGenerator
             List<string> StatsOfCharacterListOfString = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
             foreach (string str in StatsOfCharacterListOfString) {
                 if (!ChcekIsOnlyOne(str, StatsOfCharacterListOfString)) {
-                    
+                    this.MakeCellColor(str,StatsOfCharacter, LightPink);
+                    returnBool= false;
+                    if (!IsEmptyAfterInt(str)) {
+
+                        returnBool = false;
+                    }
+
                 }
             }
             
@@ -135,30 +146,44 @@ namespace RPGCardsGenerator
                 }
             }
         }
-        bool ChcekIsOnlyOne(string x, List<string> list)
+        bool ChcekIsOnlyOne(string x, List<string> list) //dziła
         {
+            int count = 0;
             foreach (string s in list) {
-                if (s == x) { return false; }
-
+                if (s == x) { count++; }
+                if (count > 1) { return false; }
             }
             return true;
         }
         bool IsEmptyAfterInt(string x)
         {
             int lastInt = FindLastIntId(x);
-            if(lastInt == )
+            if(lastInt == 0) { }
             return true;
+        }
+        bool IsItInt(char x)
+        {
+            foreach (char i in listOfNumber) {
+                if (i == x) { return true; }
+            }
+            return false;
+        }
+        int howMannyIntAreInString(string x)
+        {
+            int counter = 0;
+            foreach (char c in x)
+            {
+                if (IsItInt(c)) { counter++; }
+            }
+            return counter;
         }
         int FindLastIntId(string x) { 
            int returnInt = 0;
             int counter = 0;
-            List<char> list = new List<char> {
-            '0','1','2','3','4','5','6','7','8','9'
-
-            };
+            
             foreach(char c in x)
             {
-                foreach (char s in list) { 
+                foreach (char s in listOfNumber) { 
                 if(s==c) { returnInt = counter;  }
                 }
                 counter++;
