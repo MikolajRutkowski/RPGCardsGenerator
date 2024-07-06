@@ -24,6 +24,7 @@ namespace RPGCardsGenerator
         private SolidColorBrush Green = Brushes.Green;
         private SolidColorBrush Yellow = Brushes.Yellow;
         private SolidColorBrush LightPink = Brushes.LightPink;
+        private SolidColorBrush Blue = Brushes.Blue;
         private bool isOk = false;
 
         public NewCharacterWindow()
@@ -39,7 +40,7 @@ namespace RPGCardsGenerator
             AddCellBorders(MainInformationOfCharacter, Yellow, 1);
             AddCellBorders(SkilsOfCharacter, Yellow, 1);
             AddCellBorders(StatsOfCharacter, Yellow, 1);
-            CheckAllFilds();
+            isOk = CheckAllFilds();
             if (isOk)
             {
                 GenerateNewCharacter charactorGenerator = new GenerateNewCharacter(MainInformationOfCharacter, StatsOfCharacter, SkilsOfCharacter);
@@ -74,6 +75,11 @@ namespace RPGCardsGenerator
 
                 }
             }
+            else {
+                string messageBoxText = "Nieprawidłowe dane";
+
+                 System.Windows.MessageBox.Show(messageBoxText);
+            }
         }
 
         void Random_Stats(object sender, RoutedEventArgs e)
@@ -84,13 +90,13 @@ namespace RPGCardsGenerator
 
         void Chec_Stats(object sender, RoutedEventArgs e)
         {
-            CheckAllFilds(); //git status
+            CheckAllFilds(); 
 
         }
 
 
         private bool CheckAllFilds()
-        {
+        {// sprawdzić co się stanie jeżeli po incie jest spacja ?
 
             bool returnBool = true;
 
@@ -99,14 +105,21 @@ namespace RPGCardsGenerator
 
             List<string> StatsOfCharacterListOfString = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
             foreach (string str in StatsOfCharacterListOfString) {
+                this.MakeCellColor(str, StatsOfCharacter, Green);
                 if (!ChcekIsOnlyOne(str, StatsOfCharacterListOfString)) {
                     this.MakeCellColor(str,StatsOfCharacter, LightPink);
                     returnBool= false;
-                    if (!IsEmptyAfterInt(str)) {
-
-                        returnBool = false;
-                    }
-
+                    
+                }
+                if (!IsEmptyAfterInt(str))
+                {
+                    this.MakeCellColor(str, StatsOfCharacter, Red);
+                    returnBool = false;
+                }
+                if (!IsNoIntInside(str))
+                {
+                    this.MakeCellColor(str, StatsOfCharacter, Red);
+                    returnBool = false;
                 }
             }
             
@@ -155,12 +168,23 @@ namespace RPGCardsGenerator
             }
             return true;
         }
-        bool IsEmptyAfterInt(string x)
+        bool IsEmptyAfterInt(string x) //działa
         {
             int lastInt = FindLastIntId(x);
-            if(lastInt == 0) { }
+            if(lastInt == 0) {  return false; }
+            if(lastInt == x.Length) {
             return true;
+            }
+            return false;
         }
+        bool IsNoIntInside(string x) {
+            foreach (char c in x)
+            {
+                if (IsItInt(c)) { return true; }
+            }
+            return false;
+        }
+
         bool IsItInt(char x)
         {
             foreach (char i in listOfNumber) {
@@ -183,10 +207,11 @@ namespace RPGCardsGenerator
             
             foreach(char c in x)
             {
+                counter++;
                 foreach (char s in listOfNumber) { 
                 if(s==c) { returnInt = counter;  }
                 }
-                counter++;
+               
             }
 
             return returnInt;
