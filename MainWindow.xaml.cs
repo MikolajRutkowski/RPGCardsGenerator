@@ -78,7 +78,15 @@ namespace RPGCardsGenerator
             PrintAll();
 
         }
+        private void Delet_Character(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void CreatePDF(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         #endregion
 
@@ -101,6 +109,8 @@ namespace RPGCardsGenerator
             NewCharacterWindow newCharacterWindow = new NewCharacterWindow();
             newCharacterWindow.Show();
         }
+
+
 
 
         #endregion
