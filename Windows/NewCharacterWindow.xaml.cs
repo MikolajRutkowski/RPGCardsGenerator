@@ -37,9 +37,9 @@ namespace RPGCardsGenerator
 
         private void Add_New_Character(object sender, RoutedEventArgs e)
         {
-            AddCellBorders(MainInformationOfCharacter, Yellow, 1);
-            AddCellBorders(SkilsOfCharacter, Yellow, 1);
-            AddCellBorders(StatsOfCharacter, Yellow, 1);
+           TablePainter.AddCellBorders(MainInformationOfCharacter, Yellow, 1);
+            TablePainter.AddCellBorders(SkilsOfCharacter, Yellow, 1);
+            TablePainter.AddCellBorders(StatsOfCharacter, Yellow, 1);
             isOk = CheckAllFilds();
             if (isOk)
             {
@@ -105,20 +105,20 @@ namespace RPGCardsGenerator
 
             List<string> StatsOfCharacterListOfString = charactorGenerator.GetLinesFromRichTextBox(StatsOfCharacter);
             foreach (string str in StatsOfCharacterListOfString) {
-                this.MakeCellColor(str, StatsOfCharacter, Green);
+                TablePainter.MakeCellColor(str, StatsOfCharacter, Green);
                 if (!ChcekIsOnlyOne(str, StatsOfCharacterListOfString)) {
-                    this.MakeCellColor(str,StatsOfCharacter, LightPink);
+                    TablePainter.MakeCellColor(str,StatsOfCharacter, LightPink);
                     returnBool= false;
                     
                 }
                 if (!IsEmptyAfterInt(str))
                 {
-                    this.MakeCellColor(str, StatsOfCharacter, Red);
+                    TablePainter.MakeCellColor(str, StatsOfCharacter, Red);
                     returnBool = false;
                 }
                 if (!IsNoIntInside(str))
                 {
-                    this.MakeCellColor(str, StatsOfCharacter, Red);
+                    TablePainter.MakeCellColor(str, StatsOfCharacter, Red);
                     returnBool = false;
                 }
             }
@@ -132,33 +132,7 @@ namespace RPGCardsGenerator
 
             return returnBool;
         }
-        public void AddCellBorders(System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush borderBrush, double borderThickness)
-        {
-            // Ensure the RichTextBox has a FlowDocument
-            if (richTextBox.Document == null)
-                return;
-
-            // Loop through all blocks in the FlowDocument
-            foreach (Block block in richTextBox.Document.Blocks)
-            {
-                // Only process Table elements
-                if (block is Table table)
-                {
-                    foreach (TableRowGroup rowGroup in table.RowGroups)
-                    {
-                        foreach (TableRow row in rowGroup.Rows)
-                        {
-                            foreach (TableCell cell in row.Cells)
-                            {
-                                // Set the border properties for the cell
-                                cell.BorderBrush = borderBrush;
-                                cell.BorderThickness = new Thickness(borderThickness);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+       
         bool ChcekIsOnlyOne(string x, List<string> list) //dziła
         {
             int count = 0;
@@ -217,39 +191,7 @@ namespace RPGCardsGenerator
             return returnInt;
         } 
 
-        public void MakeCellColor(string badString, System.Windows.Controls.RichTextBox richTextBox, SolidColorBrush colorBrush)
-        {
-            // Ensure the RichTextBox has a FlowDocument
-            if (richTextBox.Document == null)
-                return;
-
-            // Loop through all blocks in the FlowDocument
-            foreach (Block block in richTextBox.Document.Blocks)
-            {
-                // Only process Table elements
-                if (block is Table table)
-                {
-                    foreach (TableRowGroup rowGroup in table.RowGroups)
-                    {
-                        foreach (TableRow row in rowGroup.Rows)
-                        {
-                            foreach (TableCell cell in row.Cells)
-                            {
-                                // Get the text content of the cell
-                                string cellText = new TextRange(cell.ContentStart, cell.ContentEnd).Text.Trim();
-
-                                // Check if the cell text matches the badString exactly
-                                if (cellText == badString)
-                                {
-                                    // Change the background color of the cell
-                                    cell.Background = colorBrush;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        
 
         #region SetRandomStats
 
